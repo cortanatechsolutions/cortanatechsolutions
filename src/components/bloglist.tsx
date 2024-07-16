@@ -28,7 +28,7 @@ const BlogList: React.FC = () => {
       try {
         // Replace with your Contentful API keys and space ID
         const response = await axios.get(
-          `https://cdn.contentful.com/spaces/ep34px3lef3m/environments/master/entries?content_type=pageBlogPost&access_token=hZT9kUXUZmg_0Ur54wYHZLniPuAoIrL7g2I_gkW48sI&limit=3`
+          `https://cdn.contentful.com/spaces/ep34px3lef3m/environments/master/entries?content_type=pageBlogPost&access_token=hZT9kUXUZmg_0Ur54wYHZLniPuAoIrL7g2I_gkW48sI&order=-fields.publishedDate&limit=3`
         );
 
         // Extract relevant data from Contentful response
@@ -37,12 +37,15 @@ const BlogList: React.FC = () => {
           title: item.fields.title,
           href: `https://blog.cortanatechsolutions.com/${item.fields.slug}`, // Example URL, adjust as needed
           description: item.fields.shortDescription || "", // Adjust for actual field name
-          date: new Date(item.sys.createdAt).toLocaleDateString("en-US", {
-            year: "numeric",
-            month: "short",
-            day: "numeric",
-          }),
-          datetime: new Date(item.sys.createdAt).toISOString(),
+          date: new Date(item.fields.publishedDate).toLocaleDateString(
+            "en-US",
+            {
+              year: "numeric",
+              month: "short",
+              day: "numeric",
+            }
+          ),
+          datetime: new Date(item.fields.publishedDate).toISOString(),
           category: {
             title: item.fields.category?.title || "", // Adjust for actual field name
             href: "#", // Example URL, adjust as needed
