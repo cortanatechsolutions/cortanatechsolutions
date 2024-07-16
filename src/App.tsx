@@ -7,6 +7,7 @@ import Home from "./components/home";
 import PartnerWithUs from "./components/PartnerWithUs";
 import Testimonial from "./components/testimonial";
 import BlogList from "./components/bloglist";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import ContactUs from "./components/contactus";
 
 interface AppData {

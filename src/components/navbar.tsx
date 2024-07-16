@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 ("use client");
 import { useState } from "react";
 import { Dialog, DialogPanel } from "@headlessui/react";

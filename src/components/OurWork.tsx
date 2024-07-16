@@ -27,7 +27,7 @@ const OurWork: React.FC = () => {
                   See it in action
                 </a>
                 <a
-                  href="#"
+                  href="https://blog.cortanatechsolutions.com/"
                   className="text-sm font-semibold leading-6 text-gray-900"
                 >
                   See other works <span aria-hidden="true">→</span>
