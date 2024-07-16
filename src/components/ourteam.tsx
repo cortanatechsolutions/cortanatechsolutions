@@ -44,11 +44,6 @@ const Team: React.FC<TeamProps> = ({ data }) => {
               </div>
             ))}
           </div>
-          <p className="relative text-center text-sm text-zinc-400 pt-10">
-            *The images and names used in Our Leadership section are all AI
-            generated and aliases, respectively, and for presentation purposes
-            only.
-          </p>
         </div>
       </div>
     </section>

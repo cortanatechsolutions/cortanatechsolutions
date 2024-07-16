@@ -38,22 +38,22 @@
     "title": "Meet Our Leadership",
     "members": [
       {
-        "name": "John Doe",
+        "name": "Faithful Coronel",
         "position": "CEO / Founder",
-        "bio": "John Doe brings over a decade of expertise in Software Engineering, leading our team with visionary insight and technical prowess.",
-        "imageUrl": "/images/ceo.png"
+        "bio": "Faithful Coronel brings over a decade of expertise in Software Engineering, leading our team with visionary insight and technical prowess.",
+        "imageUrl": "/images/ceo.webp"
       },
       {
-        "name": "James Smith",
+        "name": "Titus Jr Laxa",
         "position": "CDO / Co-Founder",
-        "bio": "James Smith is a seasoned design expert with extensive experience in crafting innovative and user-centric designs.",
-        "imageUrl": "/images/cdo.png"
+        "bio": "Titus Jr Laxa is a seasoned design expert with extensive experience in crafting innovative and user-centric designs.",
+        "imageUrl": "/images/cdo.webp"
       },
       {
-        "name": "Jane Johnson",
+        "name": "Aiza Nosa",
         "position": "CAO / Co-Founder",
-        "bio": "Jane Johnson excels in administration, ensuring seamless operations and strategic growth with a strong focus on organizational excellence.",
-        "imageUrl": "/images/cao.png"
+        "bio": "Aiza Nosa excels in administration, ensuring seamless operations and strategic growth with a strong focus on organizational excellence.",
+        "imageUrl": "/images/cao.webp"
       }
     ]
   },
