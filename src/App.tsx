@@ -1,26 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import Navbar from "./components/navbar";
+import Team from "./components/ourteam"; // Import the Team component
+import Footer from "./components/footer";
+import OurWork from "./components/OurWork";
+import Home from "./components/home";
+import PartnerWithUs from "./components/PartnerWithUs";
+import Testimonial from "./components/testimonial";
+import BlogList from "./components/bloglist";
+import ContactUs from "./components/contactus";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+interface AppData {
+  navbar: any;
+  jumbotron: any;
+  about: any;
+  services: any;
+  contact: any;
+  team: any; // Add team to the AppData interface
+  footer: any;
 }
+
+const App: React.FC = () => {
+  const [data, setData] = useState<AppData | null>(null);
+
+  useEffect(() => {
+    fetch("/data.json")
+      .then((response) => response.json())
+      .then((data) => setData(data));
+  }, []);
+
+  if (!data) return <div>Loading...</div>;
+
+  return (
+    <>
+      <Navbar data={data.navbar} />
+      <Home data={data.jumbotron} />
+      <PartnerWithUs />
+      <Testimonial />
+      <OurWork />
+      <BlogList />
+      <Team data={data.team} /> {/* Render the Team component */}
+      {/*<ContactUs /> */}
+      <Footer data={data.footer} />
+    </>
+  );
+};
 
 export default App;

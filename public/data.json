@@ -1,0 +1,60 @@
+{
+  "navbar": {
+    "brand": "Cortanatech Solutions, Inc.",
+    "links": [
+      { "name": "Home", "href": "#" },
+      { "name": "Partner With Us", "href": "#PartnerWithUs" },
+      { "name": "Testimonial", "href": "#Testimonial" },
+      { "name": "Our Work", "href": "#OurWork" },
+      { "name": "Blog", "href": "#Blog" },
+      { "name": "Our Leadership", "href": "#OurLeadership" }
+    ]
+  },
+  "jumbotron": {
+    "title": "We are your trusted business aid for Digital Innovation",
+    "description": "We're a digital agency transforming company websites. We want to be your go-to for digital innovation, providing affordable solutions that help your organization grow and succeed.",
+    "button": { "text": "Get Started", "href": "#ContactUs" }
+  },
+  "about": {
+    "title": "About Us",
+    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  },
+  "services": {
+    "title": "Our Services",
+    "items": [
+      { "title": "Service 1", "description": "Description of Service 1" },
+      { "title": "Service 2", "description": "Description of Service 2" },
+      { "title": "Service 3", "description": "Description of Service 3" }
+    ]
+  },
+  "contact": {
+    "title": "Contact Us",
+    "content": "For inquiries, please contact us using the form below."
+  },
+  "team": {
+    "title": "Meet Our Leadership",
+    "members": [
+      {
+        "name": "John Doe",
+        "position": "CEO / Founder",
+        "bio": "John Doe brings over a decade of expertise in Software Engineering, leading our team with visionary insight and technical prowess.",
+        "imageUrl": "/images/ceo.png"
+      },
+      {
+        "name": "James Smith",
+        "position": "CDO / Co-Founder",
+        "bio": "James Smith is a seasoned design expert with extensive experience in crafting innovative and user-centric designs.",
+        "imageUrl": "/images/cdo.png"
+      },
+      {
+        "name": "Jane Johnson",
+        "position": "CAO / Co-Founder",
+        "bio": "Jane Johnson excels in administration, ensuring seamless operations and strategic growth with a strong focus on organizational excellence.",
+        "imageUrl": "/images/cao.png"
+      }
+    ]
+  },
+  "footer": {
+    "text": "© 2024 Your Company. All rights reserved."
+  }
+}
