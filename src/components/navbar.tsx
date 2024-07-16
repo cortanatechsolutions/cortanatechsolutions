@@ -65,7 +65,7 @@ const Navbar: React.FC<NavbarProps> = ({ data }) => {
                 <span className="sr-only">{data.brand}</span>
                 <img
                   alt=""
-                  src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                  src={`${process.env.PUBLIC_URL}/default-logo.svg`}
                   className="h-8 w-auto"
                 />
               </a>
@@ -90,14 +90,6 @@ const Navbar: React.FC<NavbarProps> = ({ data }) => {
                       {link.name}
                     </a>
                   ))}
-                </div>
-                <div className="py-6">
-                  <a
-                    href="#"
-                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                  >
-                    Log in
-                  </a>
                 </div>
               </div>
             </div>
