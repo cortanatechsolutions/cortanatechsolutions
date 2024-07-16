@@ -27,7 +27,7 @@ const OurWork: React.FC = () => {
                   See it in action
                 </a>
                 <a
-                  href="https://blog.cortanatechsolutions.com/"
+                  href="https://blog.cortanatechsolutions.com/inspiring-through-words-merrel-yas-personal-blog"
                   className="transition hover:text-blue-500 hover:text-blue-400 text-sm font-semibold leading-6 text-gray-900"
                 >
                   See other works <span aria-hidden="true">→</span>
