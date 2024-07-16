@@ -42,7 +42,7 @@ const Footer: React.FC<FooterProps> = ({ data }) => {
                     </a>
                   </div>
                   <p className="text-sm">
-                    <span className="text-gray-500">2024 ©</span>
+                    <span className="text-gray-500">2024 © </span>
                     <a
                       className="text-gray-600 hover:text-primary"
                       href="https://cortanatechsolutions.com/"

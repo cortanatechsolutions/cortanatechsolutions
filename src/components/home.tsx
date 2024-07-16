@@ -44,7 +44,7 @@ const Home: React.FC<JumbotronProps> = ({ data }) => {
                   </a>
                   <a
                     href="https://blog.cortanatechsolutions.com"
-                    className="text-sm font-semibold leading-6 text-gray-900"
+                    className="transition hover:text-blue-500 hover:text-blue-400 text-sm font-semibold leading-6 text-gray-900"
                   >
                     Learn more <span aria-hidden="true">→</span>
                   </a>

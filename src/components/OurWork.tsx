@@ -28,7 +28,7 @@ const OurWork: React.FC = () => {
                 </a>
                 <a
                   href="https://blog.cortanatechsolutions.com/"
-                  className="text-sm font-semibold leading-6 text-gray-900"
+                  className="transition hover:text-blue-500 hover:text-blue-400 text-sm font-semibold leading-6 text-gray-900"
                 >
                   See other works <span aria-hidden="true">→</span>
                 </a>
