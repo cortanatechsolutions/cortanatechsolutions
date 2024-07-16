@@ -13,7 +13,10 @@
   "jumbotron": {
     "title": "We are your trusted business aid for Digital Innovation",
     "description": "We're a digital agency transforming company websites. We want to be your go-to for digital innovation, providing affordable solutions that help your organization grow and succeed.",
-    "button": { "text": "Get Started", "href": "#ContactUs" }
+    "button": {
+      "text": "Get Started",
+      "href": "https://www.messenger.com/t/161490932676778"
+    }
   },
   "about": {
     "title": "About Us",
