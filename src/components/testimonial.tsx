@@ -15,11 +15,12 @@ export default function Testimonial() {
         <figure className="mt-10">
           <blockquote className="text-center text-xl font-semibold leading-8 text-gray-900 sm:text-2xl sm:leading-9">
             <p>
-              “We are grateful to Cortanatech Solutions for their exceptional
-              service and innovative solutions that have greatly enhanced our
-              digital platforms. They have been instrumental in transforming our
-              online presence, making it easier for us to reach and engage with
-              our community effectively.”
+              “We are thankful for the privilege of partnering with Cortanatech
+              Solutions in advanced technology web development and email setup.
+              This partnership gives us an advantage by providing platforms that
+              enhance our promotion and communication efforts. The
+              professionalism of their services is commendable. We look forward
+              to more partnership opportunities in the future.”
             </p>
           </blockquote>
           <figcaption className="mt-10">
