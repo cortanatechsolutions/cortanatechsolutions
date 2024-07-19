@@ -4,6 +4,7 @@ import Navbar from "./components/core/navbar";
 import Footer from "./components/core/footer";
 import HomePage from "./pages/home";
 import IAppData from "./components/interfaces/IAppData";
+import dataJson from "./data/data.json";
 
 const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -13,8 +14,11 @@ const App: React.FC = () => {
     const fetchData = async () => {
       try {
         // Fetch data from the JSON file
-        const response = await fetch("/data.json");
-        const result = await response.json();
+        //const response = await fetch(dataJson);
+        //const result = await response.json();
+
+        // Use the imported JSON data directly
+        const result = dataJson;
 
         // Simulate a 3-second loading delay
         setTimeout(() => {
