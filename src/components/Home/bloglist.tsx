@@ -122,12 +122,15 @@ const BlogList: React.FC = () => {
             </article>
           ))}
         </div>
-        <div className="mx-auto mt-10 border-t border-white pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none">
+        <div className="mt-10 flex items-center justify-center gap-x-6">
+          <span className="text-sm font-semibold leading-6 text-white">
+            Want to see more?
+          </span>
           <a
-            href="https://blog.cortanatechsolutions.com/"
+            href="https://blog.cortanatechsolutions.com"
             className="rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
           >
-            See more
+            Go here <span aria-hidden="true">→</span>
           </a>
         </div>
       </div>
