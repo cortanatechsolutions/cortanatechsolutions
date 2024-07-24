@@ -68,10 +68,7 @@ const BlogList: React.FC = () => {
   }, []);
 
   return (
-    <div
-      id="Blog"
-      className="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32"
-    >
+    <div id="Blog" className="relative isolate overflow-hidden py-24 sm:py-32">
       <img
         alt=""
         src={`${process.env.PUBLIC_URL}/images/blog.jpg`}
