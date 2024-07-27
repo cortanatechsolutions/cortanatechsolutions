@@ -72,8 +72,9 @@ const BlogList: React.FC = () => {
       <img
         alt=""
         src={`${process.env.PUBLIC_URL}/images/blog.jpg`}
-        className="absolute inset-0 -z-10 h-full w-full object-cover object-right md:object-center"
+        className="absolute inset-0 -z-10 h-full w-full object-cover md:object-center"
       />
+      <div className="absolute inset-0 bg-theme-blue opacity-80 -z-10"></div>
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl lg:mx-0">
           <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
@@ -83,7 +84,7 @@ const BlogList: React.FC = () => {
             Learn how to grow your business with our expert advice.
           </p>
         </div>
-        <div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-white pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+        <div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
           {posts.map((post) => (
             <article
               key={post.id}
@@ -93,41 +94,38 @@ const BlogList: React.FC = () => {
                 <time dateTime={post.datetime} className="text-gray-500">
                   {post.date}
                 </time>
-                <a
-                  href={post.category.href}
-                  target="_blank" // Open link in a new tab
-                  rel="noopener noreferrer" // Recommended for security reasons
-                  className="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100"
-                >
-                  {post.category.title}
-                </a>
               </div>
-              <div className="group relative">
-                <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-                  <a
-                    href={post.href}
-                    className="transition hover:text-blue-500 hover:text-blue-400"
-                  >
-                    <span className="absolute inset-0" />
-                    {post.title}
-                  </a>
+              <div className="group relative group-hover:text-yellow-600">
+                <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900">
+                  <p className="font-heading">{post.title}</p>
                 </h3>
                 <p className="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">
                   {post.description}
                 </p>
+                <div className="mt-10">
+                  <a
+                    href={post.href}
+                    className="transition text-theme-royalBlue font-semibold hover:text-blue-500 hover:text-yellow-400"
+                  >
+                    Learn more <span aria-hidden="true">→</span>
+                  </a>
+                </div>
               </div>
             </article>
           ))}
         </div>
         <div className="mt-10 flex items-center justify-center gap-x-6">
-          <span className="text-sm font-semibold leading-6 text-white">
-            Want to see more?
-          </span>
           <a
             href="https://blog.cortanatechsolutions.com"
-            className="rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+            className="btn btn-light"
           >
-            Go here <span aria-hidden="true">→</span>
+            Want to see more?
+          </a>
+          <a
+            href="https://blog.cortanatechsolutions.com"
+            className="btn btn-primary"
+          >
+            Go here
           </a>
         </div>
       </div>

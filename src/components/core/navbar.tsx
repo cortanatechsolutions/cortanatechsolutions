@@ -46,7 +46,7 @@ const Navbar: React.FC<NavbarProps> = ({ data }) => {
               <a
                 key={link.name}
                 href={link.href}
-                className="text-sm font-semibold leading-6 text-gray-900"
+                className="text-sm font-heading leading-6 text-gray-900 hover:text-yellow-500 hover:text-yellow-400"
               >
                 {link.name}
               </a>
@@ -85,7 +85,7 @@ const Navbar: React.FC<NavbarProps> = ({ data }) => {
                     <a
                       key={link.name}
                       href={link.href}
-                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-heading leading-7 text-gray-900 hover:bg-gray-50 hover:text-yellow-500 hover:text-yellow-400"
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       {link.name}

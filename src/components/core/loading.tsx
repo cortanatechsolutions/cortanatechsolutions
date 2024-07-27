@@ -2,8 +2,18 @@ import React from "react";
 
 const Loading: React.FC = () => {
   return (
-    <div className="flex justify-center items-center h-screen">
-      <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900"></div>
+    <div className="relative flex justify-center items-center h-screen">
+      {/* Spinner */}
+      <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-theme-royalBlue"></div>
+
+      {/* Logo centered on spinner */}
+      <div className="absolute flex justify-center items-center">
+        <img
+          alt="Default Logo"
+          src={`${process.env.PUBLIC_URL}/default-logo.svg`}
+          className="h-8"
+        />
+      </div>
     </div>
   );
 };

@@ -1,6 +1,9 @@
 const OurWork: React.FC = () => {
   return (
-    <div id="OurWork" className="overflow-hidden bg-lightGray py-24 sm:py-32">
+    <div
+      id="OurWork"
+      className="overflow-hidden bg-theme-veryWhite py-24 sm:py-32"
+    >
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
           <div className="lg:pr-8 lg:pt-4">
@@ -20,15 +23,12 @@ const OurWork: React.FC = () => {
                 education.
               </p>
               <div className="mt-10 flex items-center justify-left gap-x-6">
-                <a
-                  href="https://bbsi.edu.ph/"
-                  className="rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-                >
+                <a href="https://bbsi.edu.ph/" className="btn btn-primary">
                   See it in action
                 </a>
                 <a
                   href="https://blog.cortanatechsolutions.com/inspiring-through-words-merrel-yas-personal-blog"
-                  className="transition hover:text-blue-500 hover:text-blue-400 text-sm font-semibold leading-6 text-gray-900"
+                  className="btn btn-outline btn-secondary"
                 >
                   See other works <span aria-hidden="true">→</span>
                 </a>

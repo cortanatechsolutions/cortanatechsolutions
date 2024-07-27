@@ -28,7 +28,10 @@ const Team: React.FC<TeamProps> = ({ data }) => {
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
             {data.members.map((member, index) => (
-              <div key={index} className="bg-platinum rounded-lg shadow-md p-6">
+              <div
+                key={index}
+                className="bg-theme-white rounded-2xl shadow-md p-6"
+              >
                 <img
                   src={member.imageUrl}
                   alt={member.name}
