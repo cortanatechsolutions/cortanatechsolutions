@@ -83,7 +83,7 @@ const links = [
 
 export default function PartnerWithUs() {
   return (
-    <div
+    <section
       id="PartnerWithUs"
       className="relative isolate overflow-hidden py-24 sm:py-32"
     >
@@ -114,7 +114,7 @@ export default function PartnerWithUs() {
                 <a
                   key={link.name}
                   href={link.href}
-                  className="transition w-56 text-2xl tracking-tight hover:text-yellow-500 hover:text-yellow-400"
+                  className="transition w-56 text-2xl tracking-tight hover:text-blue-500 hover:text-blue-400"
                 >
                   {link.name}
                 </a>
@@ -174,6 +174,6 @@ export default function PartnerWithUs() {
           />
         </div>
       </div>
-    </div>
+    </section>
   );
 }

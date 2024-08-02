@@ -95,7 +95,7 @@ const BlogList: React.FC = () => {
                   {post.date}
                 </time>
               </div>
-              <div className="group relative group-hover:text-yellow-600">
+              <div className="group relative group-hover:text-blue-600">
                 <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900">
                   <p className="font-heading">{post.title}</p>
                 </h3>
@@ -105,7 +105,7 @@ const BlogList: React.FC = () => {
                 <div className="mt-10">
                   <a
                     href={post.href}
-                    className="transition text-theme-royalBlue font-semibold hover:text-blue-500 hover:text-yellow-400"
+                    className="transition text-theme-royalBlue font-semibold hover:text-blue-500 hover:text-blue-400"
                   >
                     Learn more <span aria-hidden="true">→</span>
                   </a>

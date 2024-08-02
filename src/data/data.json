@@ -8,7 +8,8 @@
       { "name": "Our Work", "href": "#OurWork" },
       { "name": "Blog", "href": "#Blog" },
       { "name": "Our Leadership", "href": "#OurLeadership" }
-    ]
+    ],
+    "megaMenu": [{}]
   },
   "jumbotron": {
     "title": "We are your trusted business aid for Digital Innovation",
@@ -35,7 +36,7 @@
     "content": "For inquiries, please contact us using the form below."
   },
   "team": {
-    "title": "Meet Our Leadership",
+    "title": "Meet Our Team",
     "members": [
       {
         "name": "Faithful Coronel",

@@ -1,6 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/flowbite/**/*.js",
+  ],
   safelist: [
     "demo1",
     "hidden",
@@ -50,8 +54,8 @@ module.exports = {
                 inverse: "#ffffff",
               },
               primary: {
-                default: "#2b3990",
-                active: "#225ca9",
+                default: "#4169e1",
+                active: "#0000FF",
                 light: "#EFF6FF",
                 clarity: "rgba(27, 132, 255, 0.20)",
                 inverse: "#ffffff",
@@ -291,11 +295,12 @@ module.exports = {
         },
         theme: {
           black: "#000000",
-          royalBlue: "#2B3990",
+          royalBlue: "#4169e1",
           blue: "#1C75BC",
           darkGray: "#454C59",
-          lightGray: "#D1D0CE",
+          lightGray: "#A9A9A9",
           white: "#F1EDED",
+          dirtyWhite: "#F2F1F1",
           veryWhite: "#FFFFFF",
         },
       },
@@ -610,6 +615,7 @@ module.exports = {
   },
   plugins: [
     require("@tailwindcss/forms"),
+    require("flowbite/plugin"),
     require("./src/core/plugins/plugin"),
     require("./src/core/plugins/components/theme"),
     require("./src/core/plugins/components/breakpoints"),

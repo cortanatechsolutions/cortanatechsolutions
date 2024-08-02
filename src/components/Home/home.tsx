@@ -8,7 +8,7 @@ interface JumbotronProps {
 
 const Home: React.FC<JumbotronProps> = ({ data }) => {
   return (
-    <div id="Home" className="overflow-hidden py-24 sm:py-32">
+    <section id="Home" className="overflow-hidden py-10 sm:py-8">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
           <div className="lg:pr-8 lg:pt-4">
@@ -46,7 +46,7 @@ const Home: React.FC<JumbotronProps> = ({ data }) => {
           />
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
