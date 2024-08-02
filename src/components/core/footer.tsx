@@ -18,7 +18,10 @@ const Footer: React.FC = () => {
               src={`${process.env.PUBLIC_URL}/default-logo.svg`}
               className="flex h-10 mb-10 sm:mb-0"
             />
-            <nav className="-my-1 flex text-sm" aria-label="quick links">
+            <nav
+              className="-my-1 flex text-2sm sm:text-sm"
+              aria-label="quick links"
+            >
               <div className="-my-1 flex justify-center gap-x-6 gap-y-6  grid grid-cols-3 sm:grid-cols-6">
                 <a
                   className="transition hover:text-blue-500 hover:text-blue-400"
