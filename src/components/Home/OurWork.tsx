@@ -11,7 +11,7 @@ const OurWork: React.FC = () => {
               <h2 className="text-base leading-7 text-blue-600">
                 See Our Work
               </h2>
-              <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+              <p className="mt-2 text-5xl font-bold tracking-tight text-gray-900">
                 Baptist Bible Seminary and Institute, Inc.
               </p>
               <p className="mt-6 text-lg leading-8 text-gray-600">
@@ -28,7 +28,7 @@ const OurWork: React.FC = () => {
                 </a>
                 <a
                   href="https://blog.cortanatechsolutions.com/inspiring-through-words-merrel-yas-personal-blog"
-                  className="btn btn-outline btn-secondary"
+                  className="btn btn-outline btn-primary"
                 >
                   See other works <span aria-hidden="true">→</span>
                 </a>

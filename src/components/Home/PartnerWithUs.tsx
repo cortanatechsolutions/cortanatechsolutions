@@ -95,7 +95,7 @@ export default function PartnerWithUs() {
       <div className="absolute inset-0 bg-theme-royalBlue opacity-80 -z-10"></div>
       <div className="mx-auto max-w-7xl px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="mx-auto max-w-[420px] lg:mx-0 overflow-hidden">
-          <h2 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
+          <h2 className="text-5xl font-bold tracking-tight text-white">
             Partner with Us
           </h2>
           <p className="mt-6 text-lg leading-8 text-white">
@@ -114,7 +114,7 @@ export default function PartnerWithUs() {
                 <a
                   key={link.name}
                   href={link.href}
-                  className="transition w-56 text-2xl tracking-tight hover:text-blue-500 hover:text-blue-400"
+                  className="text-xl pr-15 tracking-tight hover:text-gray-300"
                 >
                   {link.name}
                 </a>
@@ -167,7 +167,7 @@ export default function PartnerWithUs() {
           />
           <img
             alt="WordPress"
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/WordPress_blue_logo.svg/512px-WordPress_blue_logo.svg.png"
+            src="https://s.w.org/style/images/about/WordPress-logotype-standard-white.png"
             width={158}
             height={48}
             className="col-span-2 max-h-12 w-full object-contain lg:col-span-1"

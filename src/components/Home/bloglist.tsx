@@ -77,7 +77,7 @@ const BlogList: React.FC = () => {
       <div className="absolute inset-0 bg-theme-blue opacity-80 -z-10"></div>
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl lg:mx-0">
-          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+          <h2 className="text-5xl font-bold tracking-tight text-white">
             From the blog
           </h2>
           <p className="mt-2 text-lg leading-8 text-white">
@@ -123,7 +123,7 @@ const BlogList: React.FC = () => {
           </a>
           <a
             href="https://blog.cortanatechsolutions.com"
-            className="btn btn-primary"
+            className="btn btn-transparent btn-primary"
           >
             Go here
           </a>

@@ -66,11 +66,17 @@ const Navbar: React.FC<NavbarProps> = ({ data }) => {
             <a
               key={link.name}
               href={link.href}
-              className="text-sm font-heading leading-6 text-gray-900 hover:text-blue-500 hover:text-blue-400"
+              className="text-sm py-2 font-heading leading-6 text-gray-900 hover:text-theme-royalBlue"
             >
               {link.name}
             </a>
           ))}
+          <a
+            href="https://www.messenger.com/t/161490932676778"
+            className="btn btn-primary"
+          >
+            Get Started
+          </a>
         </div>
       </nav>
       <Dialog
@@ -105,12 +111,18 @@ const Navbar: React.FC<NavbarProps> = ({ data }) => {
                   <a
                     key={link.name}
                     href={link.href}
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-heading leading-7 text-gray-900 hover:bg-gray-50 hover:text-blue-500 hover:text-blue-400"
+                    className="-mx-3 block px-3 py-2 text-base font-heading leading-7 text-gray-900 hover:text-theme-royalBlue"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {link.name}
                   </a>
                 ))}
+                <a
+                  href="https://www.messenger.com/t/161490932676778"
+                  className="btn btn-primary"
+                >
+                  Get Started
+                </a>
               </div>
             </div>
           </div>

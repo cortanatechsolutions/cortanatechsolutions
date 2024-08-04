@@ -14,10 +14,10 @@ const Home: React.FC<JumbotronProps> = ({ data }) => {
           <div className="lg:pr-8 lg:pt-4">
             <div className="lg:max-w-lg">
               <div className="text-left">
-                <p className="text-base leading-7 text-blue-600">
+                <p className="text-base leading-7 text-theme-royalBlue">
                   Welcome to Cortanatech Solutions!
                 </p>
-                <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+                <h1 className="text-5xl font-bold tracking-tight text-gray-900 sm:text-6xl">
                   {data.title}
                 </h1>
                 <p className="mt-6 text-lg leading-8 text-gray-600">
@@ -29,9 +29,9 @@ const Home: React.FC<JumbotronProps> = ({ data }) => {
                   </a>
                   <a
                     href="https://blog.cortanatechsolutions.com"
-                    className="btn btn-outline btn-secondary"
+                    className="btn btn-outline btn-primary"
                   >
-                    Learn more <span aria-hidden="true">→</span>
+                    Learn more
                   </a>
                 </div>
               </div>

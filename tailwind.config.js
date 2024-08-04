@@ -47,15 +47,15 @@ module.exports = {
           contextual: {
             light: {
               brand: {
-                default: "#FF6F1E",
-                active: "#F15700",
+                default: "#2b3990",
+                active: "#1c75bc",
                 light: "#FFF5EF",
                 clarity: "rgba(255, 111, 30, 0.20)",
                 inverse: "#ffffff",
               },
               primary: {
-                default: "#4169e1",
-                active: "#0000FF",
+                default: "#2b3990",
+                active: "#1c75bc",
                 light: "#EFF6FF",
                 clarity: "rgba(27, 132, 255, 0.20)",
                 inverse: "#ffffff",
