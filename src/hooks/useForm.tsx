@@ -69,41 +69,81 @@ export const useForm = (onClose: () => void) => {
       fromEmail: process.env.REACT_APP_SUPPORT_EMAIL!,
       subject: "You have received an inquiry from " + fullname,
       body: `
+    <html>
     <head>
-    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Urbanist:wght@400;700&display=swap" rel="stylesheet">
-</head>
-<body>
-<div style="font-family: DM Sans, sans-serif; color: #333; line-height: 1.6;">
-      <div style="background-color: #F1EDED; padding: 10px; text-align: center; color: #2b3990; font-family: 'Urbanist', sans-serif;">
-        <img src="https://cortanatechsolutions.com/default-logo.svg" alt="Cortanatech Solutions Logo" style="max-width: 150px; margin-bottom: 10px;">
-        <h1 style="margin: 0;">Cortanatech Solutions</h1>
-        <p style="margin: 0; font-size: 14px;">Your trusted business aid for Digital Innovation</p>
+      <style>
+        @import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Urbanist:wght@400;700&display=swap');
+        body {
+          font-family: 'DM Sans', sans-serif;
+          color: #333;
+          line-height: 1.6;
+        }
+        .header {
+          background-color: #F1EDED;
+          padding: 10px;
+          text-align: center;
+          color: #2b3990;
+          font-family: 'Urbanist', sans-serif;
+        }
+        .header img {
+          max-width: 150px;
+          margin-bottom: 10px;
+        }
+        .header h1 {
+          margin: 0;
+        }
+        .header p {
+          margin: 0;
+          font-size: 14px;
+        }
+        h2 {
+          color: #454C59;
+          margin-top: 20px;
+        }
+        table {
+          width: 100%;
+          border-collapse: collapse;
+        }
+        td {
+          padding: 8px;
+          border: 1px solid #ddd;
+        }
+        tr:nth-child(even) {
+          background-color: #f2f2f2;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="header">
+        <img src="https://cortanatechsolutions.com/default-logo.svg" alt="Cortanatech Solutions Logo">
+        <h1>Cortanatech Solutions</h1>
+        <p>Your trusted business aid for Digital Innovation</p>
       </div>
-      <h2 style="color: #454C59; margin-top: 20px;">New Inquiry from <i>cortanatechsolutions.com</i></h2>
+      <h2>New Inquiry from <i>cortanatechsolutions.com</i></h2>
       <p>You have received a new inquiry through the website. Below are the details:</p>
-      <table style="width: 100%; border-collapse: collapse;">
-        <tr style="background-color: #f2f2f2;">
-          <td style="padding: 8px; border: 1px solid #ddd;"><strong>Full Name:</strong></td>
-          <td style="padding: 8px; border: 1px solid #ddd;">${fullname}</td>
+      <table>
+        <tr>
+          <td><strong>Full Name:</strong></td>
+          <td>${fullname}</td>
         </tr>
         <tr>
-          <td style="padding: 8px; border: 1px solid #ddd;"><strong>Email:</strong></td>
-          <td style="padding: 8px; border: 1px solid #ddd;">${email}</td>
-        </tr>
-        <tr style="background-color: #f2f2f2;">
-          <td style="padding: 8px; border: 1px solid #ddd;"><strong>Subject:</strong></td>
-          <td style="padding: 8px; border: 1px solid #ddd;">${subject}</td>
+          <td><strong>Email:</strong></td>
+          <td>${email}</td>
         </tr>
         <tr>
-          <td style="padding: 8px; border: 1px solid #ddd;"><strong>Message:</strong></td>
-          <td style="padding: 8px; border: 1px solid #ddd;">${message}</td>
+          <td><strong>Subject:</strong></td>
+          <td>${subject}</td>
+        </tr>
+        <tr>
+          <td><strong>Message:</strong></td>
+          <td>${message}</td>
         </tr>
       </table>
-      <p style="margin-top: 20px;">Please respond to this inquiry promptly.</p>
+      <p>Please respond to this inquiry promptly.</p>
       <p>Best regards,<br/>Cortanatech Solutions Team</p>
-</div>
-</body>
+    </body>
+    </html>
   `,
       isHtml: true,
       ccEmails: [],
