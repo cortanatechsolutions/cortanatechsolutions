@@ -14,22 +14,10 @@ export const getToken = async (
   try {
     const encryptedUsername = encryptText(username);
     const encryptedPassword = encryptText(password);
-    const response = await axios.post<TokenResponse>(
-      `${API_URL}/gettoken`,
-      {
-        username: encryptedUsername,
-        password: encryptedPassword,
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "https://cortanatechsolutions.com/",
-          "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
-          "Access-Control-Allow-Headers":
-            "Content-Type, Authorization, X-Requested-With, Origin, Accept",
-        },
-      }
-    );
+    const response = await axios.post<TokenResponse>(`${API_URL}/gettoken`, {
+      username: encryptedUsername,
+      password: encryptedPassword,
+    });
     return response.data.token;
   } catch (error) {
     handleApiError(error);
