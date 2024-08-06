@@ -11,6 +11,7 @@ export const useForm = (onClose: () => void) => {
   const [emailError, setEmailError] = useState("");
   const [sending, setSending] = useState(false);
   const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const [combinedError, setCombinedError] = useState("");
 
@@ -116,6 +117,7 @@ export const useForm = (onClose: () => void) => {
       console.log("Email sent successfully");
       resetForm();
       onClose();
+      setToastMessage("Message sent successfully.");
       setShowToast(true);
       setTimeout(() => setShowToast(false), 5000);
     } catch (error) {
@@ -139,7 +141,9 @@ export const useForm = (onClose: () => void) => {
     combinedError,
     sending,
     showToast,
+    toastMessage,
     handleReCaptchaVerify,
     handleSubmit,
+    setShowToast,
   };
 };
