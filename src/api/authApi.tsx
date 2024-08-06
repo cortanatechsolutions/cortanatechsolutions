@@ -1,5 +1,5 @@
 import axios from "axios";
-import { encryptPassword } from "../utils/encryption";
+import { encryptText } from "../utils/encryption";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -12,11 +12,12 @@ export const getToken = async (
   password: string
 ): Promise<string | undefined> => {
   try {
-    const encryptedPassword = encryptPassword(password);
+    const encryptedUsername = encryptText(username);
+    const encryptedPassword = encryptText(password);
     const response = await axios.post<TokenResponse>(
       `${API_URL}/gettoken`,
       {
-        username,
+        username: encryptedUsername,
         password: encryptedPassword,
       },
       {

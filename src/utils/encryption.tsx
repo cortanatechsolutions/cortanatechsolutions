@@ -2,17 +2,17 @@ import CryptoJS from "crypto-js";
 
 const secretKey = process.env.REACT_APP_CRYPTO_SECRET_KEY;
 
-export const encryptPassword = (password: string): string => {
+export const encryptText = (textToEncrypt: string): string => {
   if (!secretKey) {
     throw new Error("Secret key is not defined.");
   }
-  if (!password) {
-    throw new Error("Password cannot be empty.");
+  if (!textToEncrypt) {
+    throw new Error("Text to encrypt cannot be empty.");
   }
   const iv = CryptoJS.lib.WordArray.random(16);
   const key = CryptoJS.enc.Utf8.parse(secretKey);
 
-  const encrypted = CryptoJS.AES.encrypt(password, key, {
+  const encrypted = CryptoJS.AES.encrypt(textToEncrypt, key, {
     iv: iv,
     padding: CryptoJS.pad.Pkcs7,
     mode: CryptoJS.mode.CBC,
