@@ -69,8 +69,18 @@ export const useForm = (onClose: () => void) => {
       fromEmail: process.env.REACT_APP_SUPPORT_EMAIL!,
       subject: "You have received an inquiry from " + fullname,
       body: `
-    <div style="font-family: Arial, sans-serif; color: #333; line-height: 1.6;">
-      <h2 style="color: #4CAF50;">New Inquiry from <i>cortanatechsolutions.com</i></h2>
+    <head>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Urbanist:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div style="font-family: DM Sans, sans-serif; color: #333; line-height: 1.6;">
+      <div style="background-color: #F1EDED; padding: 10px; text-align: center; color: #2b3990; font-family: 'Urbanist', sans-serif;">
+        <img src="https://cortanatechsolutions.com/default-logo.svg" alt="Cortanatech Solutions Logo" style="max-width: 150px; margin-bottom: 10px;">
+        <h1 style="margin: 0;">Cortanatech Solutions</h1>
+        <p style="margin: 0; font-size: 14px;">Your trusted business aid for Digital Innovation</p>
+      </div>
+      <h2 style="color: #454C59; margin-top: 20px;">New Inquiry from <i>cortanatechsolutions.com</i></h2>
       <p>You have received a new inquiry through the website. Below are the details:</p>
       <table style="width: 100%; border-collapse: collapse;">
         <tr style="background-color: #f2f2f2;">
@@ -91,8 +101,9 @@ export const useForm = (onClose: () => void) => {
         </tr>
       </table>
       <p style="margin-top: 20px;">Please respond to this inquiry promptly.</p>
-      <p>Best regards,<br/>CortanaTech Solutions Team</p>
-    </div>
+      <p>Best regards,<br/>Cortanatech Solutions Team</p>
+</div>
+</body>
   `,
       isHtml: true,
       ccEmails: [],
