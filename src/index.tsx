@@ -5,6 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
+import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 import "flowbite";
 
 const root = ReactDOM.createRoot(
@@ -12,7 +13,11 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <GoogleReCaptchaProvider
+      reCaptchaKey="6Le5giAqAAAAABIpaEOe1mk4UUQONZs-lunMavx9" // Replace with your reCAPTCHA site key
+    >
+      <App />
+    </GoogleReCaptchaProvider>
   </React.StrictMode>
 );
 

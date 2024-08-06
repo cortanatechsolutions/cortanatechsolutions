@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Modal from "./modal";
 import { sendEmail } from "../../services/emailService";
 import { EmailModel } from "../../models/EmailModel";
 import { getToken } from "../../services/authService";
-import ReCAPTCHA from "react-google-recaptcha";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 interface ModalFormProps {
   isOpen: boolean;
@@ -11,6 +11,7 @@ interface ModalFormProps {
 }
 
 const ModalForm: React.FC<ModalFormProps> = ({ isOpen, onClose }) => {
+  const { executeRecaptcha } = useGoogleReCaptcha();
   const [fullname, setFullname] = useState("");
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");
@@ -21,14 +22,20 @@ const ModalForm: React.FC<ModalFormProps> = ({ isOpen, onClose }) => {
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const [combinedError, setCombinedError] = useState("");
 
+  // Function to handle reCAPTCHA verification
+  const handleReCaptchaVerify = useCallback(async () => {
+    if (!executeRecaptcha) {
+      console.log("Execute recaptcha not yet available");
+      return;
+    }
+
+    const token = await executeRecaptcha("submit_form"); // You can use a specific action name
+    setCaptchaToken(token);
+  }, [executeRecaptcha]);
+
   const validateEmail = (email: string) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
-  };
-
-  const handleCaptchaChange = (token: string | null) => {
-    setCaptchaToken(token);
-    setCombinedError(""); // Clear errors on successful captcha completion
   };
 
   const resetForm = () => {
@@ -44,7 +51,7 @@ const ModalForm: React.FC<ModalFormProps> = ({ isOpen, onClose }) => {
     if (!isOpen) {
       resetForm();
     }
-  });
+  }, [isOpen]);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -69,9 +76,9 @@ const ModalForm: React.FC<ModalFormProps> = ({ isOpen, onClose }) => {
     setSending(true);
 
     const emailModel: EmailModel = {
-      toEmail: "customers@cortanatechsolutions.com",
-      fromEmail: "customers@cortanatechsolutions.com",
-      subject: "You have received an inquiry from the website",
+      toEmail: process.env.REACT_APP_SUPPORT_EMAIL!,
+      fromEmail: process.env.REACT_APP_SUPPORT_EMAIL!,
+      subject: "You have received an inquiry from " + fullname,
       body: `
     <div style="font-family: Arial, sans-serif; color: #333; line-height: 1.6;">
       <h2 style="color: #4CAF50;">New Inquiry from <i>cortanatechsolutions.com</i></h2>
@@ -98,14 +105,17 @@ const ModalForm: React.FC<ModalFormProps> = ({ isOpen, onClose }) => {
       <p>Best regards,<br/>CortanaTech Solutions Team</p>
     </div>
   `,
-      isHtml: true, // Set to true if the message is HTML
+      isHtml: true,
       ccEmails: [],
       bccEmails: [],
       attachments: [],
     };
 
     try {
-      const token = await getToken("faithful.coronel", "Password@1");
+      const token = await getToken(
+        process.env.REACT_APP_AUTH_USERNAME!,
+        process.env.REACT_APP_AUTH_PASSWORD!
+      );
       localStorage.setItem("token", token);
       console.log("Token received:", token);
 
@@ -114,7 +124,7 @@ const ModalForm: React.FC<ModalFormProps> = ({ isOpen, onClose }) => {
       resetForm();
       onClose();
       setShowToast(true);
-      setTimeout(() => setShowToast(false), 5000); // Hide toast after 3 seconds
+      setTimeout(() => setShowToast(false), 5000); // Hide toast after 5 seconds
     } catch (error) {
       console.log(error);
       setCombinedError("Failed to send email. Please try again.");
@@ -151,7 +161,7 @@ const ModalForm: React.FC<ModalFormProps> = ({ isOpen, onClose }) => {
             name="email"
             id="email"
             autoComplete="email"
-            className={`input ${emailError ? "border-danger" : ""}`}
+            className={`input ${emailError ? "border-red-500" : ""}`}
             placeholder="Your Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -175,20 +185,15 @@ const ModalForm: React.FC<ModalFormProps> = ({ isOpen, onClose }) => {
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             required
-          ></textarea>{" "}
-          {combinedError ? (
+          ></textarea>
+          {combinedError && (
             <p className="text-red-500 text-sm">{combinedError}</p>
-          ) : (
-            <p className="text-transparent text-sm">Placeholder</p>
           )}
-          <ReCAPTCHA
-            sitekey="6Le5giAqAAAAABIpaEOe1mk4UUQONZs-lunMavx9"
-            onChange={handleCaptchaChange}
-          />
           <button
             type="submit"
             disabled={sending}
             className="inline btn btn-primary text-center w-full"
+            onClick={handleReCaptchaVerify} // Verify reCAPTCHA before form submission
           >
             {sending ? "Sending..." : "Send Message"}
           </button>

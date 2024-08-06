@@ -1,7 +1,7 @@
 // src/services/authService.ts
 import axios from "axios";
 
-const API_URL = "https://localhost:7041/api/core/auth"; // Base URL for your authentication service
+const API_URL = process.env.REACT_APP_API_URL; // Base URL for your authentication service
 
 interface TokenResponse {
   token: string;

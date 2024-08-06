@@ -2,7 +2,7 @@
 import axios from "axios";
 import { EmailModel } from "../models/EmailModel"; // Ensure this import path is correct
 
-const API_URL = "https://localhost:7041/api/service/email";
+const API_URL = process.env.REACT_APP_EMAIL_API_URL; // Base URL for your email service
 
 export const sendEmail = async (email: EmailModel): Promise<void> => {
   try {
