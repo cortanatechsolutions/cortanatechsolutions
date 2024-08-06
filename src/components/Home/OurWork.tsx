@@ -1,6 +1,6 @@
 const OurWork: React.FC = () => {
   return (
-    <div
+    <section
       id="OurWork"
       className="overflow-hidden bg-theme-veryWhite py-24 sm:py-32"
     >
@@ -44,7 +44,7 @@ const OurWork: React.FC = () => {
           />
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

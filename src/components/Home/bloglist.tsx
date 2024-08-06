@@ -68,7 +68,10 @@ const BlogList: React.FC = () => {
   }, []);
 
   return (
-    <div id="Blog" className="relative isolate overflow-hidden py-24 sm:py-32">
+    <section
+      id="Blog"
+      className="relative isolate overflow-hidden py-24 sm:py-32"
+    >
       <img
         alt=""
         src={`${process.env.PUBLIC_URL}/images/blog.jpg`}
@@ -129,7 +132,7 @@ const BlogList: React.FC = () => {
           </a>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

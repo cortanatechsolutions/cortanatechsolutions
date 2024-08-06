@@ -1,3 +1,6 @@
+import { useState } from "react";
+import ModalForm from "../core/ModalForm";
+
 interface JumbotronProps {
   data: {
     title: string;
@@ -7,6 +10,11 @@ interface JumbotronProps {
 }
 
 const Home: React.FC<JumbotronProps> = ({ data }) => {
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => setModalOpen(true);
+  const closeModal = () => setModalOpen(false);
+
   return (
     <section id="Home" className="overflow-hidden py-10 sm:py-8">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -24,9 +32,9 @@ const Home: React.FC<JumbotronProps> = ({ data }) => {
                   {data.description}
                 </p>
                 <div className="mt-10 flex items-center justify-left gap-x-6">
-                  <a href={data.button.href} className="btn btn-primary">
+                  <button onClick={openModal} className="btn btn-primary">
                     {data.button.text}
-                  </a>
+                  </button>
                   <a
                     href="https://blog.cortanatechsolutions.com"
                     className="btn btn-outline btn-primary"
@@ -46,6 +54,7 @@ const Home: React.FC<JumbotronProps> = ({ data }) => {
           />
         </div>
       </div>
+      <ModalForm isOpen={isModalOpen} onClose={closeModal} />
     </section>
   );
 };

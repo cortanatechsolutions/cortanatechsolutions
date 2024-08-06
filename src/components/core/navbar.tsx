@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { Dialog, DialogPanel } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import ModalForm from "./ModalForm";
 
 interface NavbarProps {
   data: {
@@ -14,6 +15,10 @@ interface NavbarProps {
 const Navbar: React.FC<NavbarProps> = ({ data }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => setModalOpen(true);
+  const closeModal = () => setModalOpen(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -71,12 +76,9 @@ const Navbar: React.FC<NavbarProps> = ({ data }) => {
               {link.name}
             </a>
           ))}
-          <a
-            href="https://www.messenger.com/t/161490932676778"
-            className="btn btn-primary"
-          >
+          <button onClick={openModal} className="btn btn-primary">
             Get Started
-          </a>
+          </button>
         </div>
       </nav>
       <Dialog
@@ -96,7 +98,6 @@ const Navbar: React.FC<NavbarProps> = ({ data }) => {
               />
             </a>
             <button
-              type="button"
               onClick={() => setMobileMenuOpen(false)}
               className="-m-2.5 rounded-md p-2.5 text-gray-700"
             >
@@ -117,17 +118,21 @@ const Navbar: React.FC<NavbarProps> = ({ data }) => {
                     {link.name}
                   </a>
                 ))}
-                <a
-                  href="https://www.messenger.com/t/161490932676778"
+                <button
+                  onClick={() => {
+                    openModal();
+                    setMobileMenuOpen(false);
+                  }}
                   className="btn btn-primary"
                 >
                   Get Started
-                </a>
+                </button>
               </div>
             </div>
           </div>
         </DialogPanel>
       </Dialog>
+      <ModalForm isOpen={isModalOpen} onClose={closeModal} />
     </header>
   );
 };
