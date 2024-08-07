@@ -125,7 +125,7 @@ const ModalForm: React.FC<ModalFormProps> = ({ isOpen, onClose }) => {
               I agree to the{" "}
               <button
                 type="button"
-                className="text-blue-500 underline"
+                className="text-theme-blue-500 underline hover:text-theme-royalBlue"
                 onClick={openPolicyModal}
               >
                 policy statement
