@@ -32,6 +32,7 @@ jobs:
       REACT_APP_EMAIL_API_URL: ${{ secrets.REACT_APP_EMAIL_API_URL }}
       REACT_APP_SUPPORT_EMAIL: ${{ secrets.REACT_APP_SUPPORT_EMAIL }}
       REACT_APP_CRYPTO_SECRET_KEY: ${{ secrets.REACT_APP_CRYPTO_SECRET_KEY }}
+      REACT_APP_RECAPTCHA_KEY: ${{ secrets.REACT_APP_RECAPTCHA_KEY }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4

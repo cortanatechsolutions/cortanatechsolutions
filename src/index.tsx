@@ -8,13 +8,21 @@ import { fab } from "@fortawesome/free-brands-svg-icons";
 import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 import "flowbite";
 
+const secretRecaptchaKey = process.env.REACT_APP_RECAPTCHA_KEY;
+
+if (!secretRecaptchaKey) {
+  throw new Error("Recaptcha key is not defined");
+}
+
+library.add(fab); // Add FontAwesome brand icons to the library
+
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
     <GoogleReCaptchaProvider
-      reCaptchaKey="6Le5giAqAAAAABIpaEOe1mk4UUQONZs-lunMavx9" // Replace with your reCAPTCHA site key
+      reCaptchaKey={secretRecaptchaKey} // Replace with your reCAPTCHA site key
     >
       <App />
     </GoogleReCaptchaProvider>
@@ -25,4 +33,3 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
-library.add(fab);
