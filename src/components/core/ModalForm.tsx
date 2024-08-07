@@ -44,7 +44,7 @@ const ModalForm: React.FC<ModalFormProps> = ({ isOpen, onClose }) => {
       setMessage("");
       setIsAgreed(false);
     }
-  }, [isOpen, setFullname, setEmail, setSubject, setMessage]);
+  }, [isOpen, setFullname, setEmail, setSubject, setMessage, setIsAgreed]);
 
   const openPolicyModal = () => setIsPolicyModalOpen(true);
   const closePolicyModal = () => setIsPolicyModalOpen(false);

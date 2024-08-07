@@ -26,7 +26,7 @@ const Modal: React.FC<ModalProps> = ({
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
       {imageSrc && (
         <img
-          alt="Modal image"
+          alt="modal"
           src={imageSrc}
           className="hidden lg:flex rounded-l-lg shadow-lg sm:w-[27.60rem]"
         />
