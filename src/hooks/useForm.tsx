@@ -2,6 +2,7 @@ import { useState, useCallback } from "react";
 import { sendEmail } from "../services/emailService";
 import { EmailModel } from "../models/EmailModel";
 import { getToken } from "../api/authApi";
+import { logMessage } from "./logger";
 
 export const useForm = (onClose: () => void) => {
   const [fullname, setFullname] = useState("");
@@ -171,17 +172,21 @@ export const useForm = (onClose: () => void) => {
       }
 
       localStorage.setItem("token", token);
-      console.log("Token received:", token);
+      logMessage("Token received: " + token, "info");
 
       await sendEmail(emailModel);
-      console.log("Email sent successfully");
+      logMessage("Email sent successfully");
       resetForm();
       onClose();
       setToastMessage("Message sent successfully.");
       setShowToast(true);
       setTimeout(() => setShowToast(false), 5000);
     } catch (error) {
-      console.log(error);
+      // Log the error and show a failure message
+      logMessage(
+        error instanceof Error ? error.message : String(error),
+        "error"
+      );
       setCombinedError("Failed to send email. Please try again.");
     } finally {
       setSending(false);

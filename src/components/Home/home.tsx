@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ModalForm from "../core/ModalForm";
+import ModalForm from "../core/ContactFormModal";
 
 interface JumbotronProps {
   data: {

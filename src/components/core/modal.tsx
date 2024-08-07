@@ -1,5 +1,5 @@
 import { XMarkIcon } from "@heroicons/react/20/solid";
-import React from "react";
+import React, { useEffect } from "react";
 
 interface ModalProps {
   isOpen: boolean;
@@ -14,12 +14,22 @@ interface ModalProps {
 const Modal: React.FC<ModalProps> = ({
   isOpen,
   onClose,
-  title,
   children,
   width = "w-full max-w-md", // Default width
   height = "h-auto", // Default height
   imageSrc,
 }) => {
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isOpen]);
   if (!isOpen) return null;
 
   return (

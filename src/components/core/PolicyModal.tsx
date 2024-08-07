@@ -15,7 +15,7 @@ const PolicyModal: React.FC<PolicyModalProps> = ({ isOpen, onClose }) => {
       width="w-[90%] max-w-4xl"
       height="h-[80%]"
     >
-      <div className="p-4">
+      <div className="p-1">
         <h1 className="text-2xl font-bold text-gray-900 mb-4">
           Our Policy Statement
         </h1>
