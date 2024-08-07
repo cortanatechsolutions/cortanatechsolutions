@@ -14,6 +14,7 @@ export const useForm = (onClose: () => void) => {
   const [toastMessage, setToastMessage] = useState("");
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const [combinedError, setCombinedError] = useState("");
+  const [isAgreed, setIsAgreed] = useState(false);
 
   const validateEmail = (email: string) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -27,16 +28,24 @@ export const useForm = (onClose: () => void) => {
     setMessage("");
     setEmailError("");
     setCombinedError("");
+    setIsAgreed(false);
   };
 
   const handleReCaptchaVerify = useCallback(async (executeRecaptcha: any) => {
     if (!executeRecaptcha) {
-      console.log("Execute recaptcha not yet available");
+      console.error("Execute recaptcha not yet available");
       return;
     }
 
-    const token = await executeRecaptcha("submit_form");
-    setCaptchaToken(token);
+    try {
+      const token = await executeRecaptcha("submit_form");
+      setCaptchaToken(token);
+    } catch (error) {
+      console.error("Error during reCAPTCHA verification:", error);
+      setCombinedError(
+        "An error occurred while verifying CAPTCHA. Please try again."
+      );
+    }
   }, []);
 
   const handleSubmit = async (
@@ -196,5 +205,7 @@ export const useForm = (onClose: () => void) => {
     handleReCaptchaVerify,
     handleSubmit,
     setShowToast,
+    isAgreed,
+    setIsAgreed,
   };
 };

@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Modal from "./modal";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import { useForm } from "../../hooks/useForm";
 import Toast from "../../core/controls/Toast";
+import PolicyModal from "./PolicyModal";
 
 interface ModalFormProps {
   isOpen: boolean;
@@ -28,21 +29,34 @@ const ModalForm: React.FC<ModalFormProps> = ({ isOpen, onClose }) => {
     handleReCaptchaVerify,
     handleSubmit,
     setShowToast,
+    isAgreed,
+    setIsAgreed,
   } = useForm(onClose);
+
+  const [isPolicyModalOpen, setIsPolicyModalOpen] = useState(false);
 
   useEffect(() => {
     if (!isOpen) {
-      // Reset form values when modal is closed
+      // Reset form values and agreement state when modal is closed
       setFullname("");
       setEmail("");
       setSubject("");
       setMessage("");
+      setIsAgreed(false);
     }
   }, [isOpen, setFullname, setEmail, setSubject, setMessage]);
 
+  const openPolicyModal = () => setIsPolicyModalOpen(true);
+  const closePolicyModal = () => setIsPolicyModalOpen(false);
+
   return (
     <>
-      <Modal isOpen={isOpen} onClose={onClose} title="My Modal">
+      <Modal
+        isOpen={isOpen}
+        onClose={onClose}
+        title="My Modal"
+        imageSrc={`${process.env.PUBLIC_URL}/images/we-want-to-hear-from-you.jpg`}
+      >
         <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl">
           Hello there, We want to hear from you!
         </h1>
@@ -99,6 +113,26 @@ const ModalForm: React.FC<ModalFormProps> = ({ isOpen, onClose }) => {
           {combinedError && (
             <p className="text-red-500 text-sm">{combinedError}</p>
           )}
+          <div className="flex items-center space-x-2">
+            <input
+              type="checkbox"
+              id="agreePolicy"
+              checked={isAgreed}
+              onChange={() => setIsAgreed(!isAgreed)}
+              required
+            />
+            <label htmlFor="agreePolicy" className="text-sm text-gray-700">
+              I agree to the{" "}
+              <button
+                type="button"
+                className="text-blue-500 underline"
+                onClick={openPolicyModal}
+              >
+                policy statement
+              </button>
+              .
+            </label>
+          </div>
           <button
             type="submit"
             disabled={sending}
@@ -115,6 +149,8 @@ const ModalForm: React.FC<ModalFormProps> = ({ isOpen, onClose }) => {
         isVisible={showToast}
         onClose={() => setShowToast(false)}
       />
+
+      <PolicyModal isOpen={isPolicyModalOpen} onClose={closePolicyModal} />
     </>
   );
 };

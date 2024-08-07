@@ -32,7 +32,11 @@ const Home: React.FC<JumbotronProps> = ({ data }) => {
                   {data.description}
                 </p>
                 <div className="mt-10 flex items-center justify-left gap-x-6">
-                  <button onClick={openModal} className="btn btn-primary">
+                  <button
+                    onClick={openModal}
+                    className="btn btn-primary"
+                    data-modal-toggle="#modalForm"
+                  >
                     {data.button.text}
                   </button>
                   <a
