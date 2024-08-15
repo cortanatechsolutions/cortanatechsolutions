@@ -40,7 +40,7 @@ export default function CallToAction() {
       message: "Are you sure you want to subscribe with this email?",
       onConfirm: () => {
         setShowMessageBox(false);
-        subscribe(); // Call the subscribe function
+        subscribe(email); // Call the subscribe function
       },
       onCancel: () => setShowMessageBox(false),
       confirmText: "Yes, I'm Ready",
@@ -55,7 +55,7 @@ export default function CallToAction() {
     return regex.test(email);
   };
 
-  const subscribe = async () => {
+  const subscribe = async (email: string) => {
     try {
       await addNewEmailSubscriber(email);
       setMessageBoxProps({
