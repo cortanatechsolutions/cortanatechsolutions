@@ -61,8 +61,7 @@ export default function CallToAction() {
       setMessageBoxProps({
         type: "success",
         title: "Success!",
-        message:
-          "Subscription successful! Check your email for further instructions.",
+        message: "Thank you for subscribing to our newsletter.",
         onConfirm: () => setShowMessageBox(false),
         onCancel: () => setShowMessageBox(false),
         confirmText: "OK",
