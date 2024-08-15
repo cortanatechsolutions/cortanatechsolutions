@@ -21,10 +21,6 @@ export const addNewEmailSubscriber = async (email: string): Promise<void> => {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "https://cortanatechsolutions.com",
-          "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
-          "Access-Control-Allow-Headers":
-            "Content-Type, Authorization, X-Requested-With, Origin, Accept",
         },
       }
     );
