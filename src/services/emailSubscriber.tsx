@@ -4,26 +4,25 @@ import { getToken } from "../api/authApi";
 const API_URL = process.env.REACT_APP_EMAIL_API_URL; // Base URL for your email service
 
 export const addNewEmailSubscriber = async (email: string): Promise<void> => {
-  var token = await getToken(
-    process.env.REACT_APP_AUTH_USERNAME!,
-    process.env.REACT_APP_AUTH_PASSWORD!
-  );
+  var token = localStorage.getItem("token") as string | null | undefined;
+  if (token == null || token === undefined) {
+    token = await getToken(
+      process.env.REACT_APP_AUTH_USERNAME!,
+      process.env.REACT_APP_AUTH_PASSWORD!
+    );
+  }
 
   if (!token) {
     throw new Error("Something went wrong. Please try again later.");
   }
 
   try {
-    await axios.post(
-      `${API_URL}/subscribe`,
-      { email }, // Send email as a JSON object
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    await axios.post(`${API_URL}/subscribe`, email, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/text",
+      },
+    });
   } catch (error) {
     let userFriendlyMessage = "Something went wrong. Please try again later.";
 
