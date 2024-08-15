@@ -54,7 +54,7 @@ const ModalForm: React.FC<ModalFormProps> = ({ isOpen, onClose }) => {
       <Modal
         isOpen={isOpen}
         onClose={onClose}
-        title="My Modal"
+        title=""
         imageSrc={`${process.env.PUBLIC_URL}/images/we-want-to-hear-from-you.jpg`}
       >
         <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl">

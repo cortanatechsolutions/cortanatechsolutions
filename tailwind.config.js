@@ -296,6 +296,7 @@ module.exports = {
         theme: {
           black: "#000000",
           royalBlue: "#4169e1",
+          darkBlue: "#2b3990",
           blue: "#1C75BC",
           darkGray: "#454C59",
           lightGray: "#A9A9A9",
