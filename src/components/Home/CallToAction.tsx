@@ -115,7 +115,7 @@ export default function CallToAction() {
               required
             />
             <button className="btn btn-primary" type="submit">
-              Subscribe
+              Sign Up
             </button>
           </form>
         </div>
