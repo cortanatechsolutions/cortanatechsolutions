@@ -7,6 +7,7 @@ import { addNewEmailSubscriber } from "../../services/emailSubscriber";
 export default function CallToAction() {
   const [email, setEmail] = useState("");
   const [showMessageBox, setShowMessageBox] = useState(false);
+  const [isSubscribing, setShowSubscribing] = useState(false);
   const [messageBoxProps, setMessageBoxProps] = useState({
     type: "info" as MessageBoxType,
     title: "",
@@ -57,6 +58,7 @@ export default function CallToAction() {
 
   const subscribe = async (email: string) => {
     try {
+      setShowSubscribing(true);
       await addNewEmailSubscriber(email);
       setMessageBoxProps({
         type: "success",
@@ -79,6 +81,7 @@ export default function CallToAction() {
       });
     } finally {
       setShowMessageBox(true); // Ensure the message box is shown
+      setShowSubscribing(false);
     }
   };
 
@@ -112,9 +115,14 @@ export default function CallToAction() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
+              aria-label="Email address"
             />
-            <button className="btn btn-primary" type="submit">
-              Sign Up
+            <button
+              className="btn btn-primary"
+              type="submit"
+              disabled={isSubscribing} // Disable button while subscribing
+            >
+              {isSubscribing ? "Subscribing..." : "Sign Up"}
             </button>
           </form>
         </div>
