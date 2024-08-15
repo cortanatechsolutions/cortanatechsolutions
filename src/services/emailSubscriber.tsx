@@ -16,7 +16,7 @@ export const addNewEmailSubscriber = async (email: string): Promise<void> => {
   try {
     await axios.post(
       `${API_URL}/subscribe`,
-      { email }, // Send email as a JSON object
+      email, // Send email as a JSON object
       {
         headers: {
           Authorization: `Bearer ${token}`,
