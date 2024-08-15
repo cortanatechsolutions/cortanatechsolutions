@@ -1,14 +1,16 @@
 import axios from "axios";
+import { getToken } from "../api/authApi";
 
 const API_URL = process.env.REACT_APP_EMAIL_API_URL; // Base URL for your email service
 
 export const addNewEmailSubscriber = async (email: string): Promise<void> => {
-  const token = localStorage.getItem("token");
+  var token = await getToken(
+    process.env.REACT_APP_AUTH_USERNAME!,
+    process.env.REACT_APP_AUTH_PASSWORD!
+  );
 
   if (!token) {
-    throw new Error(
-      "Oops! It looks like you're not logged in. Please sign in and try again."
-    );
+    throw new Error("Something went wrong. Please try again later.");
   }
 
   try {

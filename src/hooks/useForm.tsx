@@ -171,9 +171,6 @@ export const useForm = (onClose: () => void) => {
         throw new Error("Token is not defined.");
       }
 
-      localStorage.setItem("token", token);
-      logMessage("Token received: " + token, "info");
-
       await sendEmail(emailModel);
       logMessage("Email sent successfully");
       resetForm();

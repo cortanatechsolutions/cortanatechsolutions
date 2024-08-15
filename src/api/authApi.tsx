@@ -1,5 +1,6 @@
 import axios from "axios";
 import { encryptText } from "../utils/encryption";
+import { logMessage } from "../hooks/logger";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -18,6 +19,9 @@ export const getToken = async (
       username: encryptedUsername,
       password: encryptedPassword,
     });
+
+    localStorage.setItem("token", response.data.token);
+    logMessage("Token received: " + response.data.token, "info");
     return response.data.token;
   } catch (error) {
     handleApiError(error);
