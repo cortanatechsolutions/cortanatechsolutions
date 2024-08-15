@@ -12,11 +12,6 @@ export const getToken = async (
   username: string,
   password: string
 ): Promise<string | undefined> => {
-  var token = localStorage.getItem("token") as string | null | undefined;
-  if (!(token == null || token === undefined)) {
-    return token;
-  }
-
   try {
     const encryptedUsername = encryptText(username);
     const encryptedPassword = encryptText(password);
