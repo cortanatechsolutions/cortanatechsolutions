@@ -19,19 +19,40 @@ export default function CallToAction() {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    // Check if email is valid and not empty
+    if (!email || !validateEmail(email)) {
+      setMessageBoxProps({
+        type: "error",
+        title: "Invalid Email",
+        message: "Please enter a valid email address.",
+        onConfirm: () => setShowMessageBox(false),
+        onCancel: () => setShowMessageBox(false),
+        confirmText: "OK",
+        cancelText: "",
+      });
+      setShowMessageBox(true);
+      return;
+    }
+    // Show confirmation message box
     setMessageBoxProps({
       type: "question",
       title: "Confirm Subscription",
       message: "Are you sure you want to subscribe with this email?",
       onConfirm: () => {
         setShowMessageBox(false);
-        subscribe();
+        subscribe(); // Call the subscribe function
       },
       onCancel: () => setShowMessageBox(false),
       confirmText: "Yes, I'm Ready",
       cancelText: "Maybe Later",
     });
     setShowMessageBox(true);
+  };
+
+  const validateEmail = (email: string): boolean => {
+    // Simple email validation regex
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
   };
 
   const subscribe = async () => {
