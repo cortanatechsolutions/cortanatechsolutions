@@ -45,7 +45,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           name: github-pages # Name of the artifact to upload
-          path: build # Path to the directory or file to upload (adjust as needed)
+          path: dist # Path to the directory or file to upload (adjust as needed)
 
   # Deployment job
   deploy:
