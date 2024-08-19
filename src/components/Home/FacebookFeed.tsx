@@ -136,7 +136,7 @@ const FacebookFeed: React.FC = () => {
           <div className="mx-auto mt-10">
             {/* Responsive Flexbox */}
             <div className="flex flex-wrap gap-4 justify-center z-0">
-              {Array.from({ length: 6 }).map((_, index) => (
+              {Array.from({ length: 3 }).map((_, index) => (
                 <div
                   key={index}
                   className="relative border rounded-lg shadow-md bg-white dark:bg-gray-800 flex flex-col h-full animate-fadeIn w-full md:w-[calc(50%-1rem)] xl:w-[calc(33.333%-1rem)] transform transition-transform duration-300 hover:translate-y-[-5px] z-10"
