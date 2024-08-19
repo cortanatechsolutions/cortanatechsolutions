@@ -4,10 +4,10 @@ import {
   HeartIcon,
   ShareIcon,
   ChatBubbleOvalLeftEllipsisIcon,
-  ArrowUpOnSquareIcon,
+  /**  ArrowUpOnSquareIcon, **/
 } from "@heroicons/react/24/outline";
 import { formatDistanceToNow, parseISO } from "date-fns";
-import ShareMenu from "../core/ShareMenu";
+/** import ShareMenu from "../core/ShareMenu"; **/
 
 // Define your types
 interface ImageAttachment {
@@ -86,7 +86,7 @@ const FacebookFeed: React.FC = () => {
   });
   const [visiblePosts, setVisiblePosts] = useState<Post[]>([]);
   const [visibleCount, setVisibleCount] = useState(3); // Initially show 2 rows (3 columns per row = 6 posts)
-  const [showMenu, setShowMenu] = useState<string | null>(null); // Track which post's menu is visible
+  /** const [showMenu, setShowMenu] = useState<string | null>(null); **/ // Track which post's menu is visible
 
   useEffect(() => {
     const loadPosts = async () => {
