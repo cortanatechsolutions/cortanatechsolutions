@@ -102,14 +102,14 @@ const Navbar: React.FC<NavbarProps> = ({ data }) => {
             <div className="-my-6 divide-y divide-gray-500/10">
               <div className="space-y-2 py-6">
                 {data.links.map((link) => (
-                  <a
+                  <HashLink
                     key={link.name}
-                    href={link.href}
+                    to={link.href}
                     className="-mx-3 block px-3 py-2 text-base font-heading leading-7 text-gray-900 hover:text-theme-royalBlue"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {link.name}
-                  </a>
+                  </HashLink>
                 ))}
                 <button
                   onClick={() => {
