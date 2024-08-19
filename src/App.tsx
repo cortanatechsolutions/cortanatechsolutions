@@ -49,8 +49,8 @@ const App: React.FC = () => {
       <Navbar data={data.navbar} />
       <Routes>
         <Route path="/" element={<HomePage data={data} />} />
-        <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
-        <Route path="/terms-of-service" element={<TermsOfServicePage />} />
+        <Route path="/privacyPolicy" element={<PrivacyPolicyPage />} />
+        <Route path="/termsOfService" element={<TermsOfServicePage />} />
         {/* Add other routes here */}
 
         {/* Catch all unmatched routes */}

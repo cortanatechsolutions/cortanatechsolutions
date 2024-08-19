@@ -21,13 +21,13 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <GoogleReCaptchaProvider
-        reCaptchaKey={secretRecaptchaKey} // Replace with your reCAPTCHA site key
-      >
+    <GoogleReCaptchaProvider
+      reCaptchaKey={secretRecaptchaKey} // Replace with your reCAPTCHA site key
+    >
+      <BrowserRouter>
         <App />
-      </GoogleReCaptchaProvider>
-    </BrowserRouter>
+      </BrowserRouter>
+    </GoogleReCaptchaProvider>
   </React.StrictMode>
 );
 
