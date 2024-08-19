@@ -26,14 +26,19 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      VITE_REACT_APP_API_URL: ${{ secrets.VITE_REACT_APP_API_URL }}
-      VITE_REACT_APP_AUTH_PASSWORD: ${{ secrets.VITE_REACT_APP_AUTH_PASSWORD }}
-      VITE_REACT_APP_AUTH_USERNAME: ${{ secrets.VITE_REACT_APP_AUTH_USERNAME }}
-      VITE_REACT_APP_EMAIL_API_URL: ${{ secrets.VITE_REACT_APP_EMAIL_API_URL }}
-      VITE_REACT_APP_SUPPORT_EMAIL: ${{ secrets.VITE_REACT_APP_SUPPORT_EMAIL }}
-      VITE_REACT_APP_CRYPTO_SECRET_KEY: ${{ secrets.VITE_REACT_APP_CRYPTO_SECRET_KEY }}
-      VITE_REACT_APP_RECAPTCHA_KEY: ${{ secrets.VITE_REACT_APP_RECAPTCHA_KEY }}
+      VITE_REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
+      VITE_REACT_APP_AUTH_PASSWORD: ${{ secrets.REACT_APP_AUTH_PASSWORD }}
+      VITE_REACT_APP_AUTH_USERNAME: ${{ secrets.REACT_APP_AUTH_USERNAME }}
+      VITE_REACT_APP_EMAIL_API_URL: ${{ secrets.REACT_APP_EMAIL_API_URL }}
+      VITE_REACT_APP_SUPPORT_EMAIL: ${{ secrets.REACT_APP_SUPPORT_EMAIL }}
+      VITE_REACT_APP_CRYPTO_SECRET_KEY: ${{ secrets.REACT_APP_CRYPTO_SECRET_KEY }}
+      VITE_REACT_APP_RECAPTCHA_KEY: ${{ secrets.REACT_APP_RECAPTCHA_KEY }}
+
     steps:
+      - name: Debug Secret
+        run: echo "RECAPTCHA_KEY is ${{ secrets.VITE_REACT_APP_RECAPTCHA_KEY }}"
+      - name: Debug Secret 2
+        run: echo "RECAPTCHA_KEY is ${{ secrets.REACT_APP_RECAPTCHA_KEY }}"
       - name: Checkout
         uses: actions/checkout@v4
       - name: Install dependencies
