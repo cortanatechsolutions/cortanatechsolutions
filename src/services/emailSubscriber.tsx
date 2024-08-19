@@ -1,12 +1,12 @@
 import axios from "axios";
 import { getToken } from "../api/authApi";
 
-const API_URL = import.meta.env.REACT_APP_EMAIL_API_URL; // Base URL for your email service
+const API_URL = import.meta.env.VITE_REACT_APP_EMAIL_API_URL; // Base URL for your email service
 
 export const addNewEmailSubscriber = async (email: string): Promise<void> => {
   var token = await getToken(
-    import.meta.env.REACT_APP_AUTH_USERNAME!,
-    import.meta.env.REACT_APP_AUTH_PASSWORD!
+    import.meta.env.VITE_REACT_APP_AUTH_USERNAME!,
+    import.meta.env.VITE_REACT_APP_AUTH_PASSWORD!
   );
 
   if (!token) {

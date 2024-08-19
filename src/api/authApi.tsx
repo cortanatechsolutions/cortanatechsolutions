@@ -2,7 +2,7 @@ import axios from "axios";
 import { encryptText } from "../utils/encryption";
 import { logMessage } from "../hooks/logger";
 
-const API_URL = import.meta.env.REACT_APP_API_URL;
+const API_URL = import.meta.env.VITE_REACT_APP_API_URL;
 
 interface TokenResponse {
   token: string;

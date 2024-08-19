@@ -75,8 +75,8 @@ export const useForm = (onClose: () => void) => {
     setSending(true);
 
     const emailModel: EmailModel = {
-      toEmail: import.meta.env.REACT_APP_SUPPORT_EMAIL!,
-      fromEmail: import.meta.env.REACT_APP_SUPPORT_EMAIL!,
+      toEmail: import.meta.env.VITE_REACT_APP_SUPPORT_EMAIL!,
+      fromEmail: import.meta.env.VITE_REACT_APP_SUPPORT_EMAIL!,
       subject: "You have received an inquiry from " + fullname,
       body: `
     <html>
@@ -163,8 +163,8 @@ export const useForm = (onClose: () => void) => {
 
     try {
       const token = await getToken(
-        import.meta.env.REACT_APP_AUTH_USERNAME!,
-        import.meta.env.REACT_APP_AUTH_PASSWORD!
+        import.meta.env.VITE_REACT_APP_AUTH_USERNAME!,
+        import.meta.env.VITE_REACT_APP_AUTH_PASSWORD!
       );
 
       if (!token) {

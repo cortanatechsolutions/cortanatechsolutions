@@ -1,6 +1,6 @@
 import CryptoJS from "crypto-js";
 
-const secretKey = import.meta.env.REACT_APP_CRYPTO_SECRET_KEY;
+const secretKey = import.meta.env.VITE_REACT_APP_CRYPTO_SECRET_KEY;
 
 export const encryptText = (textToEncrypt: string): string => {
   if (!secretKey) {
