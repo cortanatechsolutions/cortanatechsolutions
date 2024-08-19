@@ -37,7 +37,7 @@ const OurWork: React.FC = () => {
           </div>
           <img
             alt="Product screenshot"
-            src={`${process.env.PUBLIC_URL}/images/bbsi.png`}
+            src={`/images/bbsi.png`}
             width={2432}
             height={1442}
             className="w-[48rem] max-w-none sm:w-[57rem] md:-ml-4 lg:-ml-0"

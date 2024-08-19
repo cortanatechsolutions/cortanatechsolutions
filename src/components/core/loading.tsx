@@ -8,11 +8,7 @@ const Loading: React.FC = () => {
 
       {/* Logo centered on spinner */}
       <div className="absolute flex justify-center items-center">
-        <img
-          alt="Default Logo"
-          src={`${process.env.PUBLIC_URL}/default-logo.svg`}
-          className="h-8"
-        />
+        <img alt="Default Logo" src={`/default-logo.svg`} className="h-8" />
       </div>
     </div>
   );

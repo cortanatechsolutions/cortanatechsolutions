@@ -51,7 +51,7 @@ const Home: React.FC<JumbotronProps> = ({ data }) => {
           </div>
           <img
             alt="Product screenshot"
-            src={`${process.env.PUBLIC_URL}/images/welcome-image.jpg`}
+            src="/images/welcome-image.jpg"
             width={2432}
             height={1442}
             className="w-[48rem] max-w-none rounded-xl sm:w-[57rem] md:-ml-4 lg:-ml-0"

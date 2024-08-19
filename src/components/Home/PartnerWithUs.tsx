@@ -89,7 +89,7 @@ export default function PartnerWithUs() {
     >
       <img
         alt=""
-        src={`${process.env.PUBLIC_URL}/images/workwithus.jpg`}
+        src={`/images/workwithus.jpg`}
         className="absolute inset-0 -z-10 h-full w-full object-cover object-left sm:object-left md:object-center"
       />
       <div className="absolute inset-0 bg-theme-royalBlue opacity-80 -z-10"></div>

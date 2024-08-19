@@ -10,6 +10,7 @@ import PrivacyPolicyPage from "./components/Legal/PrivacyPolicyPage";
 import TermsOfServicePage from "./components/Legal/TermsOfServicePage";
 import IAppData from "./components/interfaces/IAppData";
 import dataJson from "./data/data.json";
+import ErrorPage404 from "./components/Error/ErrorPage404";
 
 const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -51,6 +52,9 @@ const App: React.FC = () => {
         <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
         <Route path="/terms-of-service" element={<TermsOfServicePage />} />
         {/* Add other routes here */}
+
+        {/* Catch all unmatched routes */}
+        <Route path="*" element={<ErrorPage404 />} />
       </Routes>
       <Footer />
     </>

@@ -25,16 +25,16 @@ export default async function handler(
     }: ContactFormData = req.body;
 
     const transporter = nodemailer.createTransport({
-      host: process.env.EMAIL_SERVER,
-      port: Number(process.env.EMAIL_PORT),
+      host: import.meta.env.EMAIL_SERVER,
+      port: Number(import.meta.env.EMAIL_PORT),
       auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
+        user: import.meta.env.EMAIL_USER,
+        pass: import.meta.env.EMAIL_PASS,
       },
     });
 
     const mailOptions = {
-      from: `"Your Name" <${process.env.EMAIL_USER}>`,
+      from: `"Your Name" <${import.meta.env.EMAIL_USER}>`,
       to: "recipient-email@domain.com",
       subject: "New Contact Us Form Submission",
       text: `

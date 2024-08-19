@@ -74,7 +74,7 @@ const BlogList: React.FC = () => {
     >
       <img
         alt=""
-        src={`${process.env.PUBLIC_URL}/images/blog.jpg`}
+        src={`/images/blog.jpg`}
         className="absolute inset-0 -z-10 h-full w-full object-cover md:object-center"
       />
       <div className="absolute inset-0 bg-theme-blue opacity-80 -z-10"></div>

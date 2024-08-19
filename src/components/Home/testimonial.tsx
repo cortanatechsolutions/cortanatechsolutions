@@ -5,11 +5,7 @@ export default function Testimonial() {
       className="relative isolate overflow-hidden bg-theme-white py-24 sm:py-20"
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <img
-          alt=""
-          src={`${process.env.PUBLIC_URL}/images/bbsi-logo.svg`}
-          className="mt-10 h-12"
-        />
+        <img alt="" src={`/images/bbsi-logo.svg`} className="mt-10 h-12" />
         <figure className="mt-10">
           <blockquote className="text-left text-xl font-semibold leading-8 text-gray-900 sm:text-2xl sm:leading-9">
             <p>

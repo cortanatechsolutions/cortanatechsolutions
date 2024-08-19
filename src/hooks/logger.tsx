@@ -9,7 +9,7 @@ export const logMessage = (
   message: string | Error,
   level: "info" | "warn" | "error" = "info"
 ) => {
-  if (process.env.NODE_ENV !== "development") return; // Skip logging in production
+  if (import.meta.env.NODE_ENV !== "development") return; // Skip logging in production
 
   // Convert the message to a string if it's an Error object
   const messageString =

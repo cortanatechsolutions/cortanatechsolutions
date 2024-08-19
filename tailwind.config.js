@@ -625,7 +625,6 @@ module.exports = {
   },
   plugins: [
     require("@tailwindcss/forms"),
-    require("flowbite/plugin"),
     require("./src/core/plugins/plugin"),
     require("./src/core/plugins/components/theme"),
     require("./src/core/plugins/components/breakpoints"),

@@ -6,10 +6,9 @@ import reportWebVitals from "./reportWebVitals";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
-import "flowbite";
 import { BrowserRouter } from "react-router-dom";
 
-const secretRecaptchaKey = process.env.REACT_APP_RECAPTCHA_KEY;
+const secretRecaptchaKey = import.meta.env.VITE_REACT_APP_RECAPTCHA_KEY;
 
 if (!secretRecaptchaKey) {
   throw new Error("Recaptcha key is not defined");

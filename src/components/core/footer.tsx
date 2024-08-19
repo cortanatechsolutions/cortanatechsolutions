@@ -14,7 +14,7 @@ const Footer: React.FC = () => {
         <div className="flex flex-col items-center py-10 sm:flex-row sm:justify-between">
           <img
             alt=""
-            src={`${process.env.PUBLIC_URL}/default-logo.svg`}
+            src={`/default-logo.svg`}
             className="flex h-10 mb-10 sm:mb-0"
           />
           <nav

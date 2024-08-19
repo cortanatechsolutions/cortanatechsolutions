@@ -93,7 +93,7 @@ export default function CallToAction() {
       >
         <img
           alt=""
-          src={`${process.env.PUBLIC_URL}/images/calltoaction.png`}
+          src={`/images/calltoaction.png`}
           className="absolute inset-0 -z-10 opacity-5 h-full w-full object-cover object-left sm:object-left md:object-center"
         />
         <div className="absolute inset-0 bg-theme-darkBlue opacity-80 -z-10"></div>
