@@ -7,6 +7,9 @@ import {
   /**  ArrowUpOnSquareIcon, **/
 } from "@heroicons/react/24/outline";
 import { formatDistanceToNow, parseISO } from "date-fns";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+
 /** import ShareMenu from "../core/ShareMenu"; **/
 
 // Define your types
@@ -57,7 +60,7 @@ const PageProfile: React.FC<{
   pageName: string;
   pageUrl: string;
   pageCreatedTime: string;
-}> = ({ profilePictureUrl, pageName, pageCreatedTime }) => (
+}> = ({ profilePictureUrl, pageName, pageUrl, pageCreatedTime }) => (
   <div className="flex items-center space-x-2">
     <img
       src={profilePictureUrl}
@@ -78,24 +81,26 @@ const PageProfile: React.FC<{
 );
 
 const FacebookFeed: React.FC = () => {
-  const [data, setData] = useState<PageFeedData>({
-    profilePictureUrl: "",
-    pageName: "",
-    pageUrl: "",
-    posts: [],
-  });
+  const [data, setData] = useState<PageFeedData | null>(null);
   const [visiblePosts, setVisiblePosts] = useState<Post[]>([]);
   const [visibleCount, setVisibleCount] = useState(3); // Initially show 2 rows (3 columns per row = 6 posts)
-  /** const [showMenu, setShowMenu] = useState<string | null>(null); **/ // Track which post's menu is visible
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const loadPosts = async () => {
-      const data = await fetchPageFeed();
-      setData(data);
-      setVisiblePosts(data.posts.slice(0, visibleCount));
+      setIsLoading(true);
+      try {
+        const data = await fetchPageFeed();
+        setData(data);
+        setVisiblePosts(data.posts.slice(0, visibleCount));
+      } catch (error) {
+        console.error("Error fetching page feed:", error);
+      } finally {
+        setIsLoading(false);
+      }
     };
     loadPosts();
-  }, []);
+  }, [visibleCount]);
 
   const loadMorePosts = () => {
     setVisibleCount((prevCount) => prevCount + 3); // Load 2 more rows (6 posts) on click
@@ -109,7 +114,74 @@ const FacebookFeed: React.FC = () => {
   const handleCloseMenu = () => {
     setShowMenu(null);
   };
-**/
+  **/
+
+  if (isLoading) {
+    return (
+      <section
+        id="FacebookFeed"
+        className="relative isolate overflow-hidden py-24 sm:py-32 bg-gray-50 dark:bg-gray-900"
+      >
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl lg:mx-0">
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-gray-100">
+              From the Newsfeed
+            </h2>
+            <p className="mt-4 text-base md:text-lg leading-6 text-gray-700 dark:text-gray-300">
+              Discover the latest updates and trends with insights from our
+              expert team. Stay informed and grow your business with our
+              actionable advice.
+            </p>
+          </div>
+          <div className="mx-auto mt-10">
+            {/* Responsive Flexbox */}
+            <div className="flex flex-wrap gap-4 justify-center z-0">
+              {Array.from({ length: 6 }).map((_, index) => (
+                <div
+                  key={index}
+                  className="relative border rounded-lg shadow-md bg-white dark:bg-gray-800 flex flex-col h-full animate-fadeIn w-full md:w-[calc(50%-1rem)] xl:w-[calc(33.333%-1rem)] transform transition-transform duration-300 hover:translate-y-[-5px] z-10"
+                  style={{
+                    flex: "1 0 calc(33.333% - 1rem)",
+                    minWidth: "300px",
+                  }}
+                >
+                  <div className="p-4">
+                    <Skeleton circle={true} height={48} width={48} />
+                    <div className="mt-2">
+                      <Skeleton width={150} />
+                      <Skeleton width={100} />
+                    </div>
+                  </div>
+                  <div className="p-4 text-gray-800 dark:text-gray-100">
+                    <Skeleton count={3} />
+                  </div>
+                  <div className="relative">
+                    <Skeleton height={180} />
+                  </div>
+                  <hr className="border-gray-200 dark:border-gray-700" />
+                  <div className="p-4 flex items-center justify-center gap-8 text-sm text-gray-500 dark:text-gray-400">
+                    <div className="flex items-center space-x-2">
+                      <Skeleton circle={true} height={20} width={20} />
+                      <Skeleton width={30} />
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <Skeleton circle={true} height={20} width={20} />
+                      <Skeleton width={30} />
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <Skeleton circle={true} height={20} width={20} />
+                      <Skeleton width={30} />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section
       id="FacebookFeed"
@@ -138,14 +210,14 @@ const FacebookFeed: React.FC = () => {
                 {/* First Row: Page Profile and Name */}
                 <div className="p-4">
                   <a
-                    href={data.pageUrl}
+                    href={data?.pageUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
                     <PageProfile
-                      profilePictureUrl={data.profilePictureUrl}
-                      pageName={data.pageName}
-                      pageUrl={data.pageUrl}
+                      profilePictureUrl={data?.profilePictureUrl || ""}
+                      pageName={data?.pageName || ""}
+                      pageUrl={data?.pageUrl || ""}
                       pageCreatedTime={post.created_time}
                     />
                   </a>
