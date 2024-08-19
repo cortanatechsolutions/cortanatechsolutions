@@ -1,7 +1,7 @@
 // App.tsx
 
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Loading from "./components/core/loading";
 import Navbar from "./components/core/navbar";
 import Footer from "./components/core/footer";
@@ -10,9 +10,6 @@ import PrivacyPolicyPage from "./components/Legal/PrivacyPolicyPage";
 import TermsOfServicePage from "./components/Legal/TermsOfServicePage";
 import IAppData from "./components/interfaces/IAppData";
 import dataJson from "./data/data.json";
-
-// Replace `YOUR_REPO_NAME` with your GitHub repository name
-const basename = process.env.PUBLIC_URL || "/";
 
 const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -47,7 +44,7 @@ const App: React.FC = () => {
   }
 
   return (
-    <Router basename={basename}>
+    <>
       <Navbar data={data.navbar} />
       <Routes>
         <Route path="/" element={<HomePage data={data} />} />
@@ -56,7 +53,7 @@ const App: React.FC = () => {
         {/* Add other routes here */}
       </Routes>
       <Footer />
-    </Router>
+    </>
   );
 };
 
