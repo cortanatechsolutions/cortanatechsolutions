@@ -7,6 +7,7 @@
       { "name": "Testimonial", "href": "#Testimonial" },
       { "name": "Our Work", "href": "#OurWork" },
       { "name": "Blog", "href": "#Blog" },
+      { "name": "Newsfeed", "href": "#FacebookFeed" },
       { "name": "Our Leadership", "href": "#OurLeadership" }
     ],
     "megaMenu": [{}]
