@@ -6,6 +6,7 @@ import {
   faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
 import ThreadsIcon from "../Icons/ThreadsIcon";
+import { Link } from "react-router-dom";
 
 const Footer: React.FC = () => {
   return (
@@ -21,7 +22,7 @@ const Footer: React.FC = () => {
             className="-my-1 flex text-2sm sm:text-sm"
             aria-label="quick links"
           >
-            <div className="-my-1 flex justify-center gap-x-12 gap-y-6 md:gap-x-10 grid grid-cols-3 sm:grid-cols-6">
+            <div className="-my-1 justify-center gap-x-12 gap-y-6 md:gap-x-10 grid grid-cols-3 sm:grid-cols-6">
               <a
                 className="transition hover:text-blue-500 hover:text-theme-royalBlue"
                 href="#Home"
@@ -105,7 +106,7 @@ const Footer: React.FC = () => {
               <ThreadsIcon className="w-6 h-6 hover:text-gray-400" />
             </a>
           </div>
-          <p className="text-sm">
+          <p className="flex gap-x-6 mb-5 sm:mb-0 text-sm">
             <span className="text-gray-500">2024 © </span>
             <a
               className="text-gray-600 hover:text-primary"
@@ -113,6 +114,19 @@ const Footer: React.FC = () => {
             >
               Cortanatech Solutions, Inc.
             </a>
+            <span className="text-gray-500"> | </span>
+            <Link
+              to="/privacyPolicy"
+              className="flex gap-x-6 mb-5 sm:mb-0 text-gray-600 hover:text-primary"
+            >
+              Privacy Policy
+            </Link>
+            <Link
+              to="/termsOfService"
+              className="flex gap-x-6 mb-5 sm:mb-0 text-gray-600 hover:text-primary"
+            >
+              Terms of Service
+            </Link>
           </p>
         </div>
       </div>
