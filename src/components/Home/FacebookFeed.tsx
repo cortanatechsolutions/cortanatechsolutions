@@ -95,7 +95,7 @@ const FacebookFeed: React.FC = () => {
       setVisiblePosts(data.posts.slice(0, visibleCount));
     };
     loadPosts();
-  }, [visibleCount]);
+  }, []);
 
   const loadMorePosts = () => {
     setVisibleCount((prevCount) => prevCount + 3); // Load 2 more rows (6 posts) on click

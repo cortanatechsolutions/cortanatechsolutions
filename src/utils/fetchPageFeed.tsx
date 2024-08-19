@@ -6,12 +6,19 @@ const API_URL = import.meta.env.VITE_REACT_APP_API_URL; // Base URL for your ema
 // Function to fetch Facebook page feed
 export const fetchPageFeed = async () => {
   try {
-    const facebookPageAccessTokenResponse = await axios.post(
-      `${API_URL}/getFacebookToken`
-    );
+    var facebookPageAccessToken = localStorage.getItem("facebookToken");
+    if (facebookPageAccessToken == undefined) {
+      const facebookPageAccessTokenResponse = await axios.post(
+        `${API_URL}/getFacebookToken`
+      );
 
-    const facebookPageAccessToken =
-      facebookPageAccessTokenResponse.data.accessToken;
+      localStorage.setItem(
+        "facebookToken",
+        facebookPageAccessTokenResponse.data.accessToken
+      );
+      facebookPageAccessToken =
+        facebookPageAccessTokenResponse.data.accessToken;
+    }
 
     // Fetch page profile picture
     const pageInfoResponse = await axios.get(
