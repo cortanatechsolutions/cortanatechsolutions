@@ -11,6 +11,9 @@ import TermsOfServicePage from "./components/Legal/TermsOfServicePage";
 import IAppData from "./components/interfaces/IAppData";
 import dataJson from "./data/data.json";
 
+// Replace `YOUR_REPO_NAME` with your GitHub repository name
+const basename = process.env.PUBLIC_URL || "/";
+
 const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState<IAppData | null>(null);
@@ -44,7 +47,7 @@ const App: React.FC = () => {
   }
 
   return (
-    <Router>
+    <Router basename={basename}>
       <Navbar data={data.navbar} />
       <Routes>
         <Route path="/" element={<HomePage data={data} />} />
