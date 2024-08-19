@@ -3,7 +3,7 @@
 import React from "react";
 
 const TermsOfServiceContent = () => (
-  <div className="bg-white p-6 rounded-lg shadow-md">
+  <div id="terms" className="bg-white p-6 rounded-lg shadow-md">
     <h2 className="text-2xl font-semibold mb-4">Terms of Service</h2>
     <p>
       <strong>Last Updated:</strong> August 19, 2024

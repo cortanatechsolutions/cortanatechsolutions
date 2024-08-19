@@ -22,43 +22,13 @@ const Footer: React.FC = () => {
             className="-my-1 flex text-2sm sm:text-sm"
             aria-label="quick links"
           >
-            <div className="-my-1 justify-center gap-x-12 gap-y-6 md:gap-x-10 grid grid-cols-3 sm:grid-cols-6">
-              <a
-                className="transition hover:text-blue-500 hover:text-theme-royalBlue"
-                href="#Home"
-              >
-                Home
-              </a>
-              <a
-                className="transition hover:text-blue-500 hover:text-theme-royalBlue"
-                href="#PartnerWithUs"
-              >
-                Partner With Us
-              </a>
-              <a
-                className="transition hover:text-blue-500 hover:text-theme-royalBlue"
-                href="#Testimonial"
-              >
-                Testimonial
-              </a>
-              <a
-                className="transition hover:text-blue-500 hover:text-theme-royalBlue"
-                href="#OurWork"
-              >
-                Our Work
-              </a>
-              <a
-                className="transition hover:text-blue-500 hover:text-theme-royalBlue"
-                href="#Blog"
-              >
-                Blog
-              </a>
-              <a
-                className="transition hover:text-blue-500 hover:text-theme-royalBlue"
-                href="#OurLeadership"
-              >
-                Our Team
-              </a>
+            <div className="-my-1 justify-center text-gray-600 hover:text-primary gap-x-12 gap-y-6 md:gap-x-10 grid grid-cols-3 sm:grid-cols-6">
+              <a href="#Home">Home</a>
+              <a href="#PartnerWithUs">Partner With Us</a>
+              <a href="#Testimonial">Testimonial</a>
+              <a href="#OurWork">Our Work</a>
+              <a href="#Blog">Blog</a>
+              <a href="#OurLeadership">Our Team</a>
             </div>
           </nav>
         </div>
