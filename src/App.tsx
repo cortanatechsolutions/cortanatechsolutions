@@ -1,7 +1,7 @@
 // App.tsx
 
 import React, { useEffect, useState } from "react";
-import { HashRouter as Router, Route, Routes } from "react-router-dom";
+import { Routes, Route, HashRouter } from "react-router-dom";
 import Loading from "./components/core/loading";
 import Navbar from "./components/core/navbar";
 import Footer from "./components/core/footer";
@@ -46,8 +46,8 @@ const App: React.FC = () => {
 
   return (
     <>
-      <Navbar data={data.navbar} />
-      <Router>
+      <HashRouter>
+        <Navbar data={data.navbar} />
         <Routes>
           <Route path="/" element={<HomePage data={data} />} />
           <Route path="/privacyPolicy" element={<PrivacyPolicyPage />} />
@@ -57,8 +57,8 @@ const App: React.FC = () => {
           {/* Catch all unmatched routes */}
           <Route path="*" element={<ErrorPage404 />} />
         </Routes>
-      </Router>
-      <Footer />
+        <Footer />
+      </HashRouter>
     </>
   );
 };

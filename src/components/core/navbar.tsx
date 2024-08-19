@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Dialog, DialogPanel } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import ModalForm from "./ContactFormModal";
+import { HashLink } from "react-router-hash-link";
 
 interface NavbarProps {
   data: {
@@ -64,13 +65,13 @@ const Navbar: React.FC<NavbarProps> = ({ data }) => {
         </div>
         <div className="hidden lg:flex lg:gap-x-12">
           {data.links.map((link) => (
-            <a
+            <HashLink
               key={link.name}
-              href={link.href}
+              to={link.href}
               className="text-sm py-2 font-heading leading-6 text-gray-900 hover:text-theme-royalBlue"
             >
               {link.name}
-            </a>
+            </HashLink>
           ))}
           <button onClick={openModal} className="btn btn-primary">
             Get Started
