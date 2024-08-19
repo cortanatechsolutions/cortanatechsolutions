@@ -1,8 +1,13 @@
+// App.tsx
+
 import React, { useEffect, useState } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Loading from "./components/core/loading";
 import Navbar from "./components/core/navbar";
 import Footer from "./components/core/footer";
 import HomePage from "./pages/home";
+import PrivacyPolicyPage from "./components/Legal/PrivacyPolicyPage";
+import TermsOfServicePage from "./components/Legal/TermsOfServicePage";
 import IAppData from "./components/interfaces/IAppData";
 import dataJson from "./data/data.json";
 
@@ -13,14 +18,10 @@ const App: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Fetch data from the JSON file
-        //const response = await fetch(dataJson);
-        //const result = await response.json();
-
         // Use the imported JSON data directly
         const result = dataJson;
 
-        // Simulate a 3-second loading delay
+        // Simulate a 2-second loading delay
         setTimeout(() => {
           setData(result);
           setIsLoading(false);
@@ -43,11 +44,16 @@ const App: React.FC = () => {
   }
 
   return (
-    <>
+    <Router>
       <Navbar data={data.navbar} />
-      <HomePage data={data} />
+      <Routes>
+        <Route path="/" element={<HomePage data={data} />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+        <Route path="/terms-of-service" element={<TermsOfServicePage />} />
+        {/* Add other routes here */}
+      </Routes>
       <Footer />
-    </>
+    </Router>
   );
 };
 
