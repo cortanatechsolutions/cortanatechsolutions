@@ -32,7 +32,7 @@ jobs:
       VITE_REACT_APP_EMAIL_API_URL: ${{ secrets.VITE_REACT_APP_EMAIL_API_URL }}
       VITE_REACT_APP_SUPPORT_EMAIL: ${{ secrets.VITE_REACT_APP_SUPPORT_EMAIL }}
       VITE_REACT_APP_CRYPTO_SECRET_KEY: ${{ secrets.VITE_REACT_APP_CRYPTO_SECRET_KEY }}
-      REACT_APP_RECAPTCHA_KEY: ${{ secrets.REACT_APP_RECAPTCHA_KEY }}
+      VITE_REACT_APP_RECAPTCHA_KEY: ${{ secrets.VITE_REACT_APP_RECAPTCHA_KEY }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
