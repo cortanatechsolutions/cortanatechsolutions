@@ -1,7 +1,7 @@
 // App.tsx
 
 import React, { useEffect, useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import Loading from "./components/core/loading";
 import Navbar from "./components/core/navbar";
 import Footer from "./components/core/footer";
@@ -47,15 +47,17 @@ const App: React.FC = () => {
   return (
     <>
       <Navbar data={data.navbar} />
-      <Routes>
-        <Route path="/" element={<HomePage data={data} />} />
-        <Route path="/privacyPolicy" element={<PrivacyPolicyPage />} />
-        <Route path="/termsOfService" element={<TermsOfServicePage />} />
-        {/* Add other routes here */}
+      <Router>
+        <Routes>
+          <Route path="/" element={<HomePage data={data} />} />
+          <Route path="/privacyPolicy" element={<PrivacyPolicyPage />} />
+          <Route path="/termsOfService" element={<TermsOfServicePage />} />
+          {/* Add other routes here */}
 
-        {/* Catch all unmatched routes */}
-        <Route path="*" element={<ErrorPage404 />} />
-      </Routes>
+          {/* Catch all unmatched routes */}
+          <Route path="*" element={<ErrorPage404 />} />
+        </Routes>
+      </Router>
       <Footer />
     </>
   );

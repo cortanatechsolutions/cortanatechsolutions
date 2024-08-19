@@ -6,7 +6,6 @@ import reportWebVitals from "./reportWebVitals";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
-import { HashRouter } from "react-router-dom";
 
 const secretRecaptchaKey = import.meta.env.VITE_REACT_APP_RECAPTCHA_KEY;
 
@@ -24,9 +23,7 @@ root.render(
     <GoogleReCaptchaProvider
       reCaptchaKey={secretRecaptchaKey} // Replace with your reCAPTCHA site key
     >
-      <HashRouter>
-        <App />
-      </HashRouter>
+      <App />
     </GoogleReCaptchaProvider>
   </React.StrictMode>
 );
