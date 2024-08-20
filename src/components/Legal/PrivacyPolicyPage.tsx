@@ -1,6 +1,7 @@
 // PrivacyPolicyPage.tsx
 
-import React from "react";
+import React, { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 const PrivacyPolicyContent = () => (
   <div id="policy" className="bg-white p-6 rounded-lg shadow-md">
@@ -147,10 +148,16 @@ const PrivacyPolicyContent = () => (
   </div>
 );
 
-const PrivacyPolicyPage: React.FC = () => (
-  <section className="max-w-4xl mx-auto my-8 p-4">
-    <PrivacyPolicyContent />
-  </section>
-);
+export default function PrivacyPolicyPage() {
+  const { pathname } = useLocation();
 
-export default PrivacyPolicyPage;
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return (
+    <section className="max-w-4xl mx-auto my-8 p-4">
+      <PrivacyPolicyContent />
+    </section>
+  );
+}

@@ -1,6 +1,7 @@
 // TermsOfServicePage.tsx
 
-import React from "react";
+import React, { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 const TermsOfServiceContent = () => (
   <div id="terms" className="bg-white p-6 rounded-lg shadow-md">
@@ -77,10 +78,16 @@ const TermsOfServiceContent = () => (
   </div>
 );
 
-const TermsOfServicePage: React.FC = () => (
-  <section className="max-w-4xl mx-auto my-8 p-4">
-    <TermsOfServiceContent />
-  </section>
-);
+export default function TermsOfServicePage() {
+  const { pathname } = useLocation();
 
-export default TermsOfServicePage;
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return (
+    <section className="max-w-4xl mx-auto my-8 p-4">
+      <TermsOfServiceContent />
+    </section>
+  );
+}

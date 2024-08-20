@@ -2,7 +2,7 @@
   "navbar": {
     "brand": "Cortanatech Solutions, Inc.",
     "links": [
-      { "name": "Home", "href": "#" },
+      { "name": "Home", "href": "#Home" },
       { "name": "Partner With Us", "href": "#PartnerWithUs" },
       { "name": "Testimonial", "href": "#Testimonial" },
       { "name": "Our Work", "href": "#OurWork" },

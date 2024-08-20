@@ -46,19 +46,17 @@ const App: React.FC = () => {
 
   return (
     <>
-      <HashRouter>
-        <Navbar data={data.navbar} />
-        <Routes>
-          <Route path="/" element={<HomePage data={data} />} />
-          <Route path="/privacyPolicy" element={<PrivacyPolicyPage />} />
-          <Route path="/termsOfService" element={<TermsOfServicePage />} />
-          {/* Add other routes here */}
+      <Navbar data={data.navbar} />
+      <Routes>
+        <Route path="/" element={<HomePage data={data} />} />
+        <Route path="/privacyPolicy" element={<PrivacyPolicyPage />} />
+        <Route path="/termsOfService" element={<TermsOfServicePage />} />
+        {/* Add other routes here */}
 
-          {/* Catch all unmatched routes */}
-          <Route path="*" element={<ErrorPage404 />} />
-        </Routes>
-        <Footer />
-      </HashRouter>
+        {/* Catch all unmatched routes */}
+        <Route path="*" element={<ErrorPage404 />} />
+      </Routes>
+      <Footer />
     </>
   );
 };

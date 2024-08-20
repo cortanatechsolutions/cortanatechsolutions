@@ -1,10 +1,8 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-("use client");
 import { useState, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Dialog, DialogPanel } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import ModalForm from "./ContactFormModal";
-import { HashLink } from "react-router-hash-link";
 
 interface NavbarProps {
   data: {
@@ -18,16 +16,15 @@ const Navbar: React.FC<NavbarProps> = ({ data }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isModalOpen, setModalOpen] = useState(false);
 
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const openModal = () => setModalOpen(true);
   const closeModal = () => setModalOpen(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 50);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -37,9 +34,21 @@ const Navbar: React.FC<NavbarProps> = ({ data }) => {
     };
   }, []);
 
+  const handleNavClick = (href: string) => {
+    const targetId = href.startsWith("#") ? href.substring(1) : null;
+
+    if (location.pathname !== "/" && targetId) {
+      // If the user is not on the homepage, navigate to the homepage and scroll to the section
+      navigate(`/${href}`);
+    } else if (targetId) {
+      // If the user is already on the homepage, smooth scroll to the section
+      document.getElementById(targetId)?.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <header
-      className={`top-0 z-50 transition-shadow ${
+      className={`top-0 z-50 transition-shadow duration-300 ${
         isScrolled ? "sticky bg-white shadow-lg" : "bg-transparent"
       }`}
     >
@@ -65,13 +74,17 @@ const Navbar: React.FC<NavbarProps> = ({ data }) => {
         </div>
         <div className="hidden lg:flex lg:gap-x-12">
           {data.links.map((link) => (
-            <HashLink
+            <a
               key={link.name}
-              to={link.href}
+              href={link.href}
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavClick(link.href);
+              }}
               className="text-sm py-2 font-heading leading-6 text-gray-900 hover:text-theme-royalBlue"
             >
               {link.name}
-            </HashLink>
+            </a>
           ))}
           <button onClick={openModal} className="btn btn-primary">
             Get Started
@@ -102,14 +115,17 @@ const Navbar: React.FC<NavbarProps> = ({ data }) => {
             <div className="-my-6 divide-y divide-gray-500/10">
               <div className="space-y-2 py-6">
                 {data.links.map((link) => (
-                  <HashLink
+                  <a
                     key={link.name}
-                    to={link.href}
+                    href={link.href}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNavClick(link.href);
+                    }}
                     className="-mx-3 block px-3 py-2 text-base font-heading leading-7 text-gray-900 hover:text-theme-royalBlue"
-                    onClick={() => setMobileMenuOpen(false)}
                   >
                     {link.name}
-                  </HashLink>
+                  </a>
                 ))}
                 <button
                   onClick={() => {
