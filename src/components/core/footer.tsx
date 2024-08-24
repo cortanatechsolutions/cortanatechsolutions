@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFacebook,
@@ -6,9 +6,45 @@ import {
   faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
 import ThreadsIcon from "../Icons/ThreadsIcon";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
-const Footer: React.FC = () => {
+interface NavbarProps {
+  data: {
+    brand: string;
+    links: { name: string; href: string }[];
+  };
+}
+
+const Footer: React.FC<NavbarProps> = ({ data }) => {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const handleNavClick = (href: string) => {
+    const targetId = href.startsWith("#") ? href.substring(1) : null;
+
+    if (location.pathname !== "/" && targetId) {
+      // If the user is not on the homepage, navigate to the homepage and scroll to the section
+      navigate(`/${href}`);
+    } else if (targetId) {
+      // If the user is already on the homepage, smooth scroll to the section
+      document.getElementById(targetId)?.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <footer className="overflow-hidden py-15 sm:py-20">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -23,12 +59,19 @@ const Footer: React.FC = () => {
             aria-label="quick links"
           >
             <div className="-my-1 justify-center text-gray-600 hover:text-primary gap-x-12 gap-y-6 md:gap-x-10 grid grid-cols-3 sm:grid-cols-6">
-              <a href="#Home">Home</a>
-              <a href="#PartnerWithUs">Partner With Us</a>
-              <a href="#Testimonial">Testimonial</a>
-              <a href="#OurWork">Our Work</a>
-              <a href="#Blog">Blog</a>
-              <a href="#OurLeadership">Our Team</a>
+              {data.links.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavClick(link.href);
+                  }}
+                  className="text-sm py-2 font-heading leading-6 text-gray-900 hover:text-theme-royalBlue"
+                >
+                  {link.name}
+                </a>
+              ))}
             </div>
           </nav>
         </div>

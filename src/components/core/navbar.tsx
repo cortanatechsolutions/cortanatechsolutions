@@ -121,6 +121,7 @@ const Navbar: React.FC<NavbarProps> = ({ data }) => {
                     onClick={(e) => {
                       e.preventDefault();
                       handleNavClick(link.href);
+                      setMobileMenuOpen(false);
                     }}
                     className="-mx-3 block px-3 py-2 text-base font-heading leading-7 text-gray-900 hover:text-theme-royalBlue"
                   >
