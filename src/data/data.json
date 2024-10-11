@@ -40,19 +40,19 @@
     "members": [
       {
         "name": "Faithful Coronel",
-        "position": "CEO / Founder",
+        "position": "Director of Operations / Founder",
         "bio": "Faithful Coronel brings over a decade of expertise in Software Engineering, leading our team with visionary insight and technical prowess.",
         "imageUrl": "/images/ceo.webp"
       },
       {
         "name": "Titus Jr Laxa",
-        "position": "CDO / Co-Founder",
+        "position": "Director of Branding / Co-Founder",
         "bio": "Titus Jr Laxa is a seasoned design expert with extensive experience in crafting innovative and user-centric designs.",
         "imageUrl": "/images/cdo.webp"
       },
       {
         "name": "Aiza Nosa",
-        "position": "CAO / Co-Founder",
+        "position": "Director of Administration / Co-Founder",
         "bio": "Aiza Nosa excels in administration, ensuring seamless operations and strategic growth with a strong focus on organizational excellence.",
         "imageUrl": "/images/cao.webp"
       }
