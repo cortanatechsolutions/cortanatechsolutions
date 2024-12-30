@@ -1,7 +1,7 @@
 // App.tsx
 
 import React, { useEffect, useState } from "react";
-import { Routes, Route, HashRouter } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Loading from "./components/core/loading";
 import Navbar from "./components/core/navbar";
 import Footer from "./components/core/footer";
@@ -11,6 +11,9 @@ import TermsOfServicePage from "./components/Legal/TermsOfServicePage";
 import IAppData from "./components/interfaces/IAppData";
 import dataJson from "./data/data.json";
 import ErrorPage404 from "./components/Error/ErrorPage404";
+import OAuthCallback from "./utils/OAuthCallback";
+import OAuthRedirect from "./utils/OAuthRedirect";
+import ProtectedRoute from "./utils/ProtectedRoute";
 
 const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -51,7 +54,16 @@ const App: React.FC = () => {
         <Route path="/" element={<HomePage data={data} />} />
         <Route path="/privacyPolicy" element={<PrivacyPolicyPage />} />
         <Route path="/termsOfService" element={<TermsOfServicePage />} />
-        {/* Add other routes here */}
+        
+        <Route
+          path="/facebook-integration"
+          element={
+            <ProtectedRoute>
+              <OAuthRedirect />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/facebook-callback" element={<OAuthCallback />} />
 
         {/* Catch all unmatched routes */}
         <Route path="*" element={<ErrorPage404 />} />
