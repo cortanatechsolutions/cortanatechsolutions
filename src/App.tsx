@@ -46,6 +46,7 @@ const App: React.FC = () => {
   if (!data) {
     return <div>Error loading data</div>; // Show error if data is not available
   }
+  
 
   return (
     <>
