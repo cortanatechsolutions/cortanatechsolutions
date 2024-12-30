@@ -31,7 +31,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "vercel-build": "vite build"
   },
   "devDependencies": {
     "@types/crypto-js": "^4.2.2",
