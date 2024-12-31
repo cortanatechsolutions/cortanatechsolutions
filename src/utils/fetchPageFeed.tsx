@@ -9,7 +9,15 @@ export const fetchPageFeed = async () => {
     var facebookPageAccessToken = localStorage.getItem("facebookToken");
     if (facebookPageAccessToken == undefined) {
       const facebookPageAccessTokenResponse = await api.post(
-        `/GetFacebookPageAccessToken`
+        `/GetFacebookPageAccessToken`,
+        null,
+        {
+          params: {
+            pageId: PAGE_ID,
+            userAccessToken: "userAccessToken",
+            newToken: false
+          },
+        }
       );
 
       localStorage.setItem(
