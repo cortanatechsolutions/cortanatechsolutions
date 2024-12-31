@@ -63,6 +63,7 @@ const OAuthCallback: React.FC = () => {
               params: {
                 pageId: pageId,
                 userAccessToken: userAccessToken,
+                newToken: true
               },
             }
           );

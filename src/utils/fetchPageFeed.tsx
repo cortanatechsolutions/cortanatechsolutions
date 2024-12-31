@@ -1,15 +1,15 @@
 import axios from "axios";
+import api from "./api";
 
-const PAGE_ID = "161490932676778";
-const API_URL = import.meta.env.VITE_REACT_APP_API_URL; // Base URL for your email service
+const PAGE_ID = import.meta.env.VITE_REACT_APP_FACEBOOK_FACEBOOK_PAGEID || "";
 
 // Function to fetch Facebook page feed
 export const fetchPageFeed = async () => {
   try {
     var facebookPageAccessToken = localStorage.getItem("facebookToken");
     if (facebookPageAccessToken == undefined) {
-      const facebookPageAccessTokenResponse = await axios.post(
-        `${API_URL}/getFacebookToken`
+      const facebookPageAccessTokenResponse = await api.post(
+        `/GetFacebookPageAccessToken`
       );
 
       localStorage.setItem(
