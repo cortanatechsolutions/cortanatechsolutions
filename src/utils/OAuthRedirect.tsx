@@ -14,12 +14,14 @@ const OAuthRedirect: React.FC = () => {
       try {
         const redirectUri = encodeURIComponent(window.location.origin + "/facebook-callback");
         const apiVersion = import.meta.env.VITE_REACT_APP_FACEBOOK_API_VERSION || "";
+        const pageId = import.meta.env.VITE_REACT_APP_FACEBOOK_FACEBOOK_PAGEID || "";
+        const state = `${pageId}|${window.location.origin}`; // Combine pageId and origin with delimiter "|"
 
         const response = await api.get<{ oauthUrl: string }>(`/InitiateFacebookOAuth`, {
           params: {
             redirectUrl: redirectUri,
             apiVersion: apiVersion,
-            state: window.location.origin,
+            state: state,
           },
         });
 
