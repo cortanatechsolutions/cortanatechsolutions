@@ -80,8 +80,6 @@ const OAuthCallback: React.FC = () => {
           null,
           { params: { pageId, userAccessToken, newToken: true } }
         );
-
-      localStorage.setItem("facebookToken", response.data.accessToken);
       setStatusMessage("Successfully connected to your Facebook page! Redirecting...");
       setTimeout(() => {
         window.location.href = redirectUri || window.location.origin;
