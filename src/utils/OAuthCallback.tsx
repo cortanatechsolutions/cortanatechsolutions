@@ -15,82 +15,100 @@ const OAuthCallback: React.FC = () => {
   const [countdown, setCountdown] = useState(5);
   const isRequestInProgress = useRef(false);
 
-  // Extract pageId and redirectUri from the state
   const [pageId, redirectUri] = state ? state.split("|") : [null, window.location.origin];
 
-  useEffect(() => {
-    const redirectAfterFailure = () => {
-      const interval = setInterval(() => {
-        setCountdown((prev) => {
-          if (prev <= 1) {
-            clearInterval(interval);
-            window.location.href = redirectUri || window.location.origin;
-          }
-          return prev - 1;
-        });
-      }, 1000);
-    };
+  const redirectAfterFailure = () => {
+    const interval = setInterval(() => {
+      setCountdown((prev) => {
+        if (prev <= 1) {
+          clearInterval(interval);
+          window.location.href = redirectUri || window.location.origin;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+  };
 
-    if (error) {
-      setErrorMessage(decodeURIComponent(errorDescription || "An unknown error occurred."));
+  const removePageIntegration = async () => {
+    if (!pageId || isRequestInProgress.current) return;
+
+    isRequestInProgress.current = true;
+    try {
+      await api.delete("/DeleteFacebookPageIntegration", { params: { pageId } });
+      setErrorMessage("Existing integrations have been successfully removed.");
+    } catch (err) {
+      console.error("Error removing page integration:", err);
+      setErrorMessage("An issue occurred while removing integrations. Please contact support.");
+    } finally {
+      isRequestInProgress.current = false;
       redirectAfterFailure();
-      return;
     }
+  };
 
-    const handleCallback = async () => {
-      if (!code || isRequestInProgress.current) return;
+  const handleCallback = async () => {
+    if (!code || isRequestInProgress.current) return;
 
-      isRequestInProgress.current = true; // Mark request as in-progress
+    isRequestInProgress.current = true;
+    setStatusMessage("Verifying your Facebook account...");
+    try {
+      const encodedRedirectUri = encodeURIComponent(`${window.location.origin}/facebook-callback`);
+      const apiVersion = import.meta.env.VITE_REACT_APP_FACEBOOK_API_VERSION || "";
 
-      setStatusMessage("Verifying your Facebook account...");
-      try {
-        const encodedRedirectUri = encodeURIComponent(`${window.location.origin}/facebook-callback`);
-        const apiVersion = import.meta.env.VITE_REACT_APP_FACEBOOK_API_VERSION || "";
+      const response = await api.get<{ accessToken: string }>("/HandleFacebookOAuthCallback", {
+        params: { code, redirectUrl: encodedRedirectUri, apiVersion },
+      });
 
-        const response = await api.get<{ accessToken: string }>("/HandleFacebookOAuthCallback", {
-          params: { code, redirectUrl: encodedRedirectUri, apiVersion },
-        });
+      setStatusMessage("Retrieving your page access token...");
+      isRequestInProgress.current = false;
+      await getPageAccessToken(response.data.accessToken);
+    } catch (err) {
+      console.error("Error handling OAuth callback:", err);
+      setErrorMessage("We encountered an issue while verifying your account. Please try again.");
+      redirectAfterFailure();
+    } finally {
+      isRequestInProgress.current = false;
+    }
+  };
 
-        setStatusMessage("Retrieving your page access token...");
-        isRequestInProgress.current = false;
-        await getPageAccessToken(response.data.accessToken);
-      } catch (err) {
-        console.error("Error handling OAuth callback:", err);
-        setErrorMessage("We encountered an issue while verifying your account. Please try again.");
-        redirectAfterFailure();
-      } finally {
-        isRequestInProgress.current = false; // Reset the flag
-      }
-    };
+  const getPageAccessToken = async (userAccessToken: string) => {
+    if (!userAccessToken || !pageId || isRequestInProgress.current) return;
 
-    const getPageAccessToken = async (userAccessToken: string) => {
-      if (!userAccessToken || !pageId || isRequestInProgress.current) return;
-
-      isRequestInProgress.current = true; // Mark request as in-progress
-
-      try {
+    isRequestInProgress.current = true;
+    try {
         const response = await api.post<{ accessToken: string }>(
           `/GetFacebookPageAccessToken`,
           null,
           { params: { pageId, userAccessToken, newToken: true } }
         );
 
-        localStorage.setItem("facebookToken", response.data.accessToken);
-        setStatusMessage("Successfully connected to your Facebook page! Redirecting...");
-        setTimeout(() => {
-          window.location.href = redirectUri || window.location.origin;
-        }, 2000);
-      } catch (err) {
-        console.error("Error retrieving page access token:", err);
-        setErrorMessage("Unable to retrieve page access token. Please try again later.");
-        redirectAfterFailure();
-      } finally {
-        isRequestInProgress.current = false; // Reset the flag
-      }
-    };
+      localStorage.setItem("facebookToken", response.data.accessToken);
+      setStatusMessage("Successfully connected to your Facebook page! Redirecting...");
+      setTimeout(() => {
+        window.location.href = redirectUri || window.location.origin;
+      }, 2000);
+    } catch (err) {
+      console.error("Error retrieving page access token:", err);
+      setErrorMessage("Unable to retrieve the page access token. Please try again later.");
+      redirectAfterFailure();
+    } finally {
+      isRequestInProgress.current = false;
+    }
+  };
 
-    handleCallback();
-  }, [code, state, error, errorDescription, pageId, redirectUri]);
+  useEffect(() => {
+    if (error) {
+      if (error === "access_denied") {
+        setStatusMessage("Access was denied. Removing existing integrations...");
+        removePageIntegration();
+      } else {
+        setErrorMessage(decodeURIComponent(errorDescription || "An unknown error occurred."));
+        redirectAfterFailure();
+      }
+      
+    } else {
+      handleCallback();
+    }
+  }, [code, error, errorDescription, pageId, redirectUri]);
 
   return (
     <div className="fullscreen-overlay">
