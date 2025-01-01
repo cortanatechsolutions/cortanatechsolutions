@@ -90,9 +90,9 @@ const FacebookFeed: React.FC = () => {
     const loadPosts = async () => {
       setIsLoading(true);
       try {
-        const data = await fetchPageFeed();
-        setData(data);
-        setVisiblePosts(data.posts.slice(0, visibleCount));
+        const fetchedData = await fetchPageFeed();
+        setData(fetchedData);
+        setVisiblePosts(fetchedData.posts.slice(0, visibleCount));
       } catch (error) {
         console.error("Error fetching page feed:", error);
       } finally {
@@ -100,10 +100,16 @@ const FacebookFeed: React.FC = () => {
       }
     };
     loadPosts();
-  }, [visibleCount]);
+  }, []);
+
+  useEffect(() => {
+    if (data?.posts.length) {
+      setVisiblePosts(data.posts.slice(0, visibleCount));
+    }
+  }, [visibleCount, data]);
 
   const loadMorePosts = () => {
-    setVisibleCount((prevCount) => prevCount + 3); // Load 2 more rows (6 posts) on click
+    setVisibleCount((prevCount) => Math.min(prevCount + 3, data.posts.length));
   };
 
   /** 
