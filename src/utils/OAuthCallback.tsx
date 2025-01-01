@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
 import api from "./api";
 import "./common.css";
@@ -12,76 +12,85 @@ const OAuthCallback: React.FC = () => {
 
   const [statusMessage, setStatusMessage] = useState("Initializing...");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [countdown, setCountdown] = useState(5);
+  const isRequestInProgress = useRef(false);
+
+  // Extract pageId and redirectUri from the state
+  const [pageId, redirectUri] = state ? state.split("|") : [null, window.location.origin];
 
   useEffect(() => {
     const redirectAfterFailure = () => {
-      setTimeout(() => {
-        window.location.href = state || window.location.origin; // Redirect to the provided state or fallback origin
-      }, 5000); // Wait 5 seconds before redirecting
+      const interval = setInterval(() => {
+        setCountdown((prev) => {
+          if (prev <= 1) {
+            clearInterval(interval);
+            window.location.href = redirectUri || window.location.origin;
+          }
+          return prev - 1;
+        });
+      }, 1000);
     };
 
     if (error) {
-      // Handle errors passed in the callback URL
       setErrorMessage(decodeURIComponent(errorDescription || "An unknown error occurred."));
       redirectAfterFailure();
       return;
     }
 
     const handleCallback = async () => {
-      if (code) {
-        setStatusMessage("Verifying your Facebook account...");
-        try {
-          const redirectUri = encodeURIComponent(window.location.origin + "/facebook-callback");
-          const apiVersion = import.meta.env.VITE_REACT_APP_FACEBOOK_API_VERSION || "";
+      if (!code || isRequestInProgress.current) return;
 
-          const response = await api.get<{ accessToken: string }>("/HandleFacebookOAuthCallback", {
-            params: {
-              code: code,
-              redirectUrl: redirectUri,
-              apiVersion: apiVersion,
-            },
-          });
+      isRequestInProgress.current = true; // Mark request as in-progress
 
-          setStatusMessage("Retrieving your page access token...");
-          getPageAccessToken(response.data.accessToken);
-        } catch (error) {
-          console.error("Error handling OAuth callback:", error);
-          setErrorMessage("We encountered an issue while verifying your account. Please try again.");
-          redirectAfterFailure();
-        }
+      setStatusMessage("Verifying your Facebook account...");
+      try {
+        const encodedRedirectUri = encodeURIComponent(`${window.location.origin}/facebook-callback`);
+        const apiVersion = import.meta.env.VITE_REACT_APP_FACEBOOK_API_VERSION || "";
+
+        const response = await api.get<{ accessToken: string }>("/HandleFacebookOAuthCallback", {
+          params: { code, redirectUrl: encodedRedirectUri, apiVersion },
+        });
+
+        setStatusMessage("Retrieving your page access token...");
+        isRequestInProgress.current = false;
+        await getPageAccessToken(response.data.accessToken);
+      } catch (err) {
+        console.error("Error handling OAuth callback:", err);
+        setErrorMessage("We encountered an issue while verifying your account. Please try again.");
+        redirectAfterFailure();
+      } finally {
+        isRequestInProgress.current = false; // Reset the flag
       }
     };
 
     const getPageAccessToken = async (userAccessToken: string) => {
-      if (userAccessToken) {
-        const pageId = import.meta.env.VITE_REACT_APP_FACEBOOK_FACEBOOK_PAGEID || "";
-        try {
-          const response = await api.post<{ accessToken: string }>(
-            `/GetFacebookPageAccessToken`,
-            null,
-            {
-              params: {
-                pageId: pageId,
-                userAccessToken: userAccessToken,
-                newToken: true
-              },
-            }
-          );
-          localStorage.setItem("facebookToken", response.data.accessToken);
-          setStatusMessage("Successfully connected to your Facebook page! Redirecting...");
-          setTimeout(() => {
-            window.location.href = state || window.location.origin; // Redirect to the provided state or origin
-          }, 2000);
-        } catch (error) {
-          console.error("Error retrieving page access token:", error);
-          setErrorMessage("Unable to retrieve page access token. Please try again later.");
-          redirectAfterFailure();
-        }
+      if (!userAccessToken || !pageId || isRequestInProgress.current) return;
+
+      isRequestInProgress.current = true; // Mark request as in-progress
+
+      try {
+        const response = await api.post<{ accessToken: string }>(
+          `/GetFacebookPageAccessToken`,
+          null,
+          { params: { pageId, userAccessToken, newToken: true } }
+        );
+
+        localStorage.setItem("facebookToken", response.data.accessToken);
+        setStatusMessage("Successfully connected to your Facebook page! Redirecting...");
+        setTimeout(() => {
+          window.location.href = redirectUri || window.location.origin;
+        }, 2000);
+      } catch (err) {
+        console.error("Error retrieving page access token:", err);
+        setErrorMessage("Unable to retrieve page access token. Please try again later.");
+        redirectAfterFailure();
+      } finally {
+        isRequestInProgress.current = false; // Reset the flag
       }
     };
 
     handleCallback();
-  }, [code, state, error, errorDescription]);
+  }, [code, state, error, errorDescription, pageId, redirectUri]);
 
   return (
     <div className="fullscreen-overlay">
@@ -90,7 +99,9 @@ const OAuthCallback: React.FC = () => {
           <>
             <div className="error-icon">⚠️</div>
             <p className="error-message">{errorMessage}</p>
-            <p className="redirecting-message">You will be redirected shortly...</p>
+            <p className="redirecting-message">
+              Redirecting to the homepage in {countdown} seconds...
+            </p>
           </>
         ) : (
           <>
