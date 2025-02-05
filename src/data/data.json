@@ -39,22 +39,34 @@
     "title": "Meet our Team",
     "members": [
       {
-        "name": "Faithful Coronel",
+        "name": "Faithful Eli Coronel",
         "position": "Director of Operations / Founder",
-        "bio": "Faithful Coronel brings over a decade of expertise in Software Engineering, leading our team with visionary insight and technical prowess.",
+        "bio": "Faithful brings over a decade of expertise in Software Engineering, leading our team with visionary insight and technical prowess.",
         "imageUrl": "/images/ceo.webp"
       },
       {
         "name": "Titus Jr Laxa",
         "position": "Director of Branding / Co-Founder",
-        "bio": "Titus Jr Laxa is a seasoned design expert with extensive experience in crafting innovative and user-centric designs.",
+        "bio": "Titus Jr is a seasoned design expert with extensive experience in crafting innovative and user-centric designs.",
         "imageUrl": "/images/cdo.webp"
       },
       {
         "name": "Aiza Nosa",
         "position": "Director of Administration / Co-Founder",
-        "bio": "Aiza Nosa excels in administration, ensuring seamless operations and strategic growth with a strong focus on organizational excellence.",
+        "bio": "Aiza excels in administration, ensuring seamless operations and strategic growth with a strong focus on organizational excellence.",
         "imageUrl": "/images/cao.webp"
+      },
+      {
+        "name": "Jennifer Dimino",
+        "position": "Director of Finance",
+        "bio": "Jennifer specializes in data analytics and cost-to-serve strategies, helping clients increase brand awareness, generate leads, and acquire new customers while aiding management in financial decision-making.",
+        "imageUrl": "/images/cfo.svg"
+      },
+      {
+        "name": "Mervin Hernandez",
+        "position": "Director of Technology",
+        "bio": "Mervin is a veteran in the IT industry with over 30 years of experience in developing, managing, and implementing advanced technology solutions.",
+        "imageUrl": "/images/cto.svg"
       }
     ]
   },

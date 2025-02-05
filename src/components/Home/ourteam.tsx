@@ -17,7 +17,7 @@ interface TeamProps {
 const Team: React.FC<TeamProps> = ({ data }) => {
   return (
     <section id="OurLeadership" className="bg-theme-dirtyWhite">
-      <div className="overflow-hidden  py-24 sm:py-32">
+      <div className="overflow-hidden py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <h1 className="text-5xl font-bold">{data.title}</h1>
           <p className="mt-6 text-lg leading-8 text-gray-600">
@@ -26,11 +26,11 @@ const Team: React.FC<TeamProps> = ({ data }) => {
             results for our clients. We're here to journey with you towards the
             success of your company's mission.
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
+          <div className="flex flex-wrap justify-center gap-8 mt-8">
             {data.members.map((member, index) => (
               <div
                 key={index}
-                className="bg-theme-white rounded-2xl shadow-md p-6"
+                className="bg-theme-white rounded-2xl shadow-md p-6 w-72 transform transition-all duration-300 hover:scale-105 hover:shadow-xl hover:bg-gray-100"
               >
                 <img
                   src={member.imageUrl}
